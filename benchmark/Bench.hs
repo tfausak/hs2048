@@ -1,11 +1,11 @@
 module Main (main) where
 
-import           Criterion.Main    (bgroup, defaultMain)
+import           Criterion.Main       (bgroup, defaultMain)
+import qualified H2048.DirectionBench
 import qualified H2048.GridBench
 import qualified H2048.TileBench
 import qualified H2048.VectorBench
 import qualified H2048Bench
-import qualified H2048.DirectionBench
 -- HASKELETON: import qualified New.ModuleBench
 
 main :: IO ()

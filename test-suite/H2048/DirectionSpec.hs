@@ -1,7 +1,7 @@
 module H2048.DirectionSpec (spec) where
 
-import Test.Hspec
-import H2048.Direction ()
+import           H2048.Direction ()
+import           Test.Hspec
 
 spec :: Spec
 spec = it "is" pending
