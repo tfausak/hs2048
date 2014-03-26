@@ -1,7 +1,7 @@
-module H2048.GridSpec (spec) where
+module H2048.BoardSpec (spec) where
 
+import           H2048.Board
 import qualified H2048.Direction as D
-import           H2048.Grid
 import           Test.Hspec
 
 spec :: Spec

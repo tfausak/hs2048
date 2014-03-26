@@ -1,6 +1,6 @@
 -- | TODO
-module H2048.Grid
-    ( Grid
+module H2048.Board
+    ( Board
     , empty
     , emptyPoints
     , move
@@ -21,58 +21,58 @@ import qualified H2048.Tile      as T
 import qualified H2048.Vector    as V
 
 -- | TODO
-type Grid = [V.Vector]
+type Board = [V.Vector]
 
 -- | TODO
-empty :: Int -> Int -> Grid
+empty :: Int -> Int -> Board
 empty = flip replicate . V.empty
 
 -- | TODO
-emptyPoints :: Grid -> [P.Point]
-emptyPoints g = zip [0 ..] (fmap V.emptyIndexes g) >>= go
+emptyPoints :: Board -> [P.Point]
+emptyPoints b = zip [0 ..] (fmap V.emptyIndexes b) >>= go
   where
     go (x, ys) = fmap ((,) x) ys
 
 -- | TODO
-move :: Grid -> D.Direction -> Grid
-move g d = rotateFrom (shift (rotateTo g d)) d
+move :: Board -> D.Direction -> Board
+move b d = rotateFrom (shift (rotateTo b d)) d
 
 -- | TODO
-parse :: String -> Grid
+parse :: String -> Board
 parse = fmap V.parse . lines
 
 -- | TODO
-render :: Grid -> String
+render :: Board -> String
 render = unlines . fmap V.render
 
 -- | TODO
-rotate :: Grid -> Grid
+rotate :: Board -> Board
 rotate = fmap reverse . transpose
 
 -- | TODO
-rotateFrom :: Grid -> D.Direction -> Grid
-rotateFrom g d = head (drop n gs)
+rotateFrom :: Board -> D.Direction -> Board
+rotateFrom b d = head (drop n gs)
   where
     n = 1 + fromEnum (maxBound :: D.Direction) - fromEnum d
-    gs = iterate rotate g
+    gs = iterate rotate b
 
 -- | TODO
-rotateTo :: Grid -> D.Direction -> Grid
-rotateTo g d = head (drop n gs)
+rotateTo :: Board -> D.Direction -> Board
+rotateTo b d = head (drop n gs)
   where
     n = fromEnum d
-    gs = iterate rotate g
+    gs = iterate rotate b
 
 -- | TODO
-score :: Grid -> Int
+score :: Board -> Int
 score = sum . fmap V.score
 
 -- | TODO
-set :: Grid -> T.Tile -> P.Point -> Grid
-set g t p = zipWith go [0 ..] g
+set :: Board -> T.Tile -> P.Point -> Board
+set b t p = zipWith go [0 ..] b
   where
     go i v = if i == P.x p then V.set v t (P.y p) else v
 
 -- | TODO
-shift :: Grid -> Grid
+shift :: Board -> Board
 shift = fmap V.shift

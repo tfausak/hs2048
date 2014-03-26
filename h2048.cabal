@@ -81,14 +81,14 @@ test-suite hspec
         H2048
         H2048.Tile
         H2048.Vector
-        H2048.Grid
+        H2048.Board
         H2048.Direction
         H2048.Point
         -- HASKELETON: New.Module
         H2048Spec
         H2048.TileSpec
         H2048.VectorSpec
-        H2048.GridSpec
+        H2048.BoardSpec
         H2048.DirectionSpec
         H2048.PointSpec
         -- HASKELETON: New.ModuleSpec
