@@ -81,10 +81,12 @@ test-suite hspec
         H2048
         H2048.Tile
         H2048.Vector
+        H2048.Grid
         -- HASKELETON: New.Module
         H2048Spec
         H2048.TileSpec
         H2048.VectorSpec
+        H2048.GridSpec
         -- HASKELETON: New.ModuleSpec
     type:
         exitcode-stdio-1.0
