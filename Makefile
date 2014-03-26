@@ -8,6 +8,10 @@ build:
 configure:
 	cabal configure --enable-tests
 
+format:
+	git ls-files '*.hs' | xargs -n 1 scan --inplace-modify
+	git ls-files '*.hs' | xargs stylish-haskell --inplace
+
 haddock:
 	cabal haddock --hyperlink-source
 	# dist/doc/html/h2048/index.html
