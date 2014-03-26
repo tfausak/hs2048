@@ -5,12 +5,14 @@ module H2048.Grid
     , parse
     , render
     , rotate
+    , rotateTo
     , score
     , shift
     ) where
 
-import           Data.List    (transpose)
-import qualified H2048.Vector as V
+import           Data.List       (transpose)
+import qualified H2048.Direction as D
+import qualified H2048.Vector    as V
 
 -- | TODO
 type Grid = [V.Vector]
@@ -30,6 +32,10 @@ render = unlines . fmap V.render
 -- | TODO
 rotate :: Grid -> Grid
 rotate = fmap reverse . transpose
+
+-- | TODO
+rotateTo :: Grid -> D.Direction -> Grid
+rotateTo g d = head (drop (fromEnum d) (iterate rotate g))
 
 -- | TODO
 score :: Grid -> Int

@@ -1,5 +1,6 @@
 module H2048.GridSpec (spec) where
 
+import qualified H2048.Direction as D
 import           H2048.Grid
 import           Test.Hspec
 
@@ -33,6 +34,23 @@ spec = do
         it "rotates clockwise" $ do
             rotate [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe`
                 [[Just 4, Nothing], [Just 8, Just 2]]
+
+    describe "rotateTo" $ do
+        it "rotates West" $ do
+            rotateTo [[Nothing, Just 2], [Just 4, Just 8]] D.West `shouldBe`
+                [[Nothing, Just 2], [Just 4, Just 8]]
+
+        it "rotates South" $ do
+            rotateTo [[Nothing, Just 2], [Just 4, Just 8]] D.South `shouldBe`
+                [[Just 4, Nothing], [Just 8, Just 2]]
+
+        it "rotates East" $ do
+            rotateTo [[Nothing, Just 2], [Just 4, Just 8]] D.East `shouldBe`
+                [[Just 8, Just 4], [Just 2, Nothing]]
+
+        it "rotates North" $ do
+            rotateTo [[Nothing, Just 2], [Just 4, Just 8]] D.North `shouldBe`
+                [[Just 2, Just 8], [Nothing, Just 4]]
 
     describe "score" $ do
         it "returns 0 for []" $ do
