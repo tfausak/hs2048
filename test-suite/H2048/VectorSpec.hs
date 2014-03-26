@@ -16,19 +16,19 @@ spec = do
         it "returns [] for \"\"" $ do
             parse "" `shouldBe` []
 
-        it "returns [Nothing, Just 2, Just 4, Just 8] for \"- 2 4 8\"" $ do
-            parse "- 2 4 8" `shouldBe` [Nothing, Just 2, Just 4, Just 8]
+        it "returns [Nothing, Just 2] for \"- 2\"" $ do
+            parse "- 2" `shouldBe` [Nothing, Just 2]
 
     describe "render" $ do
         it "returns \"\" for []" $ do
             render [] `shouldBe` ""
 
-        it "returns \"- 2 4 8\" for [Nothing, Just 2, Just 4, Just 8]" $ do
-            render [Nothing, Just 2, Just 4, Just 8] `shouldBe` "- 2 4 8"
+        it "returns \"- 2\" for [Nothing, Just 2]" $ do
+            render [Nothing, Just 2] `shouldBe` "- 2"
 
     describe "score" $ do
         it "returns 0 for []" $ do
             score [] `shouldBe` 0
 
-        it "returns 14 for [Nothing, Just 2, Just 4, Just 8]" $ do
-            score [Nothing, Just 2, Just 4, Just 8] `shouldBe` 14
+        it "returns 14 for [Nothing, Just 2]" $ do
+            score [Nothing, Just 2] `shouldBe` 2
