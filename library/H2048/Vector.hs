@@ -1,6 +1,7 @@
 -- | TODO
 module H2048.Vector
     ( Vector
+    , empty
     , parse
     , render
     , score
@@ -10,6 +11,10 @@ import qualified H2048.Tile as T
 
 -- | TODO
 type Vector = [T.Tile]
+
+-- | TODO
+empty :: Int -> Vector
+empty = flip replicate T.empty
 
 -- | TODO
 parse :: String -> Vector

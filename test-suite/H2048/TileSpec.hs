@@ -6,6 +6,10 @@ import           Test.Hspec.QuickCheck
 
 spec :: Spec
 spec = do
+    describe "empty" $ do
+        it "returns Nothing" $ do
+            empty `shouldBe` Nothing
+
     describe "parse" $ do
         it "returns Nothing for \"-\"" $ do
             parse "-" `shouldBe` Nothing

@@ -5,6 +5,13 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    describe "empty" $ do
+        it "returns [] for 0 0" $ do
+            empty 0 0 `shouldBe` []
+
+        it "returns [[Nothing], [Nothing]] for 1 2" $ do
+            empty 1 2 `shouldBe` [[Nothing], [Nothing]]
+
     describe "parse" $ do
         it "returns [] for \"\"" $ do
             parse "" `shouldBe` []

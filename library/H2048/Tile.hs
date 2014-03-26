@@ -1,6 +1,7 @@
 -- | TODO
 module H2048.Tile
     ( Tile
+    , empty
     , parse
     , render
     , score
@@ -8,6 +9,10 @@ module H2048.Tile
 
 -- | TODO
 type Tile = Maybe Int
+
+-- | TODO
+empty :: Tile
+empty = Nothing
 
 -- | TODO
 parse :: String -> Tile
