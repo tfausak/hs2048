@@ -13,6 +13,14 @@ spec = do
         it "returns [[Nothing], [Nothing]] for 1 2" $ do
             empty 1 2 `shouldBe` [[Nothing], [Nothing]]
 
+    describe "emptyPoints" $ do
+        it "returns [] for []" $ do
+            emptyPoints [] `shouldBe` []
+
+        it "returns the points without tiles" $ do
+            emptyPoints [[Nothing, Just 2], [Just 4, Nothing]] `shouldBe`
+                [(0, 0), (1, 1)]
+
     describe "move" $ do
         it "moves West" $ do
             move [[Nothing, Just 2], [Just 4, Nothing]] D.West `shouldBe`

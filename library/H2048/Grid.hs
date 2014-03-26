@@ -2,6 +2,7 @@
 module H2048.Grid
     ( Grid
     , empty
+    , emptyPoints
     , move
     , parse
     , render
@@ -22,6 +23,12 @@ type Grid = [V.Vector]
 -- | TODO
 empty :: Int -> Int -> Grid
 empty = flip replicate . V.empty
+
+-- | TODO
+emptyPoints :: Grid -> [(Int, Int)]
+emptyPoints g = zip [0 ..] (fmap V.emptyIndexes g) >>= go
+  where
+    go (x, ys) = fmap ((,) x) ys
 
 -- | TODO
 move :: Grid -> D.Direction -> Grid
