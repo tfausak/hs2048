@@ -26,6 +26,14 @@ spec = do
         it "returns \"- 2\n4 8\n\" for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
             render [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` "- 2\n4 8\n"
 
+    describe "rotate" $ do
+        it "returns [] for []" $ do
+            rotate [] `shouldBe` []
+
+        it "rotates clockwise" $ do
+            rotate [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe`
+                [[Just 4, Nothing], [Just 8, Just 2]]
+
     describe "score" $ do
         it "returns 0 for []" $ do
             score [] `shouldBe` 0

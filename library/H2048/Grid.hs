@@ -4,10 +4,12 @@ module H2048.Grid
     , empty
     , parse
     , render
+    , rotate
     , score
     , shift
     ) where
 
+import           Data.List    (transpose)
 import qualified H2048.Vector as V
 
 -- | TODO
@@ -24,6 +26,10 @@ parse = fmap V.parse . lines
 -- | TODO
 render :: Grid -> String
 render = unlines . fmap V.render
+
+-- | TODO
+rotate :: Grid -> Grid
+rotate = fmap reverse . transpose
 
 -- | TODO
 score :: Grid -> Int
