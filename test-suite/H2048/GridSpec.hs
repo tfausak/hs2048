@@ -101,6 +101,11 @@ spec = do
         it "returns 14 for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
             score [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` 14
 
+    describe "set" $ do
+        it "sets the tile at the point" $ do
+            set [[Nothing, Nothing], [Nothing, Nothing]] (Just 2) (0, 0) `shouldBe`
+                [[Just 2, Nothing], [Nothing, Nothing]]
+
     describe "shift" $ do
         it "returns [] for []" $ do
             shift [] `shouldBe` []

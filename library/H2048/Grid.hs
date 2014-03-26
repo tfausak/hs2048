@@ -10,12 +10,14 @@ module H2048.Grid
     , rotateFrom
     , rotateTo
     , score
+    , set
     , shift
     ) where
 
 import           Data.List       (transpose)
 import qualified H2048.Direction as D
 import qualified H2048.Point     as P
+import qualified H2048.Tile      as T
 import qualified H2048.Vector    as V
 
 -- | TODO
@@ -64,6 +66,14 @@ rotateTo g d = head (drop n gs)
 -- | TODO
 score :: Grid -> Int
 score = sum . fmap V.score
+
+-- | TODO
+set :: Grid -> T.Tile -> P.Point -> Grid
+set g t p = zipWith go [0 ..] g
+  where
+    go i v = if i == x then V.set v t y else v
+    x = fst p
+    y = snd p
 
 -- | TODO
 shift :: Grid -> Grid

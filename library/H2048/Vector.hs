@@ -41,7 +41,9 @@ score = sum . fmap T.score
 
 -- | TODO
 set :: Vector -> T.Tile -> Int -> Vector
-set v t i = take i v <> [t] <> drop (i + 1) v
+set v t i = zipWith go [0 ..] v
+  where
+    go i' t' = if i' == i then t else t'
 
 -- | TODO
 shift :: Vector -> Vector
