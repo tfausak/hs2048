@@ -5,6 +5,7 @@ module H2048.Grid
     , parse
     , render
     , rotate
+    , rotateFrom
     , rotateTo
     , score
     , shift
@@ -32,6 +33,12 @@ render = unlines . fmap V.render
 -- | TODO
 rotate :: Grid -> Grid
 rotate = fmap reverse . transpose
+
+-- | TODO
+rotateFrom :: Grid -> D.Direction -> Grid
+rotateFrom g d = head (drop n (iterate rotate g))
+  where
+    n = 1 + fromEnum (maxBound :: D.Direction) - fromEnum d
 
 -- | TODO
 rotateTo :: Grid -> D.Direction -> Grid

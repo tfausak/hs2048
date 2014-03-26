@@ -35,6 +35,23 @@ spec = do
             rotate [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe`
                 [[Just 4, Nothing], [Just 8, Just 2]]
 
+    describe "rotateFrom" $ do
+        it "rotates West" $ do
+            rotateFrom [[Nothing, Just 2], [Just 4, Just 8]] D.West `shouldBe`
+                [[Nothing, Just 2], [Just 4, Just 8]]
+
+        it "rotates South" $ do
+            rotateFrom [[Nothing, Just 2], [Just 4, Just 8]] D.South `shouldBe`
+                [[Just 2, Just 8], [Nothing, Just 4]]
+
+        it "rotates East" $ do
+            rotateFrom [[Nothing, Just 2], [Just 4, Just 8]] D.East `shouldBe`
+                [[Just 8, Just 4], [Just 2, Nothing]]
+
+        it "rotates North" $ do
+            rotateFrom [[Nothing, Just 2], [Just 4, Just 8]] D.North `shouldBe`
+                [[Just 4, Nothing], [Just 8, Just 2]]
+
     describe "rotateTo" $ do
         it "rotates West" $ do
             rotateTo [[Nothing, Just 2], [Just 4, Just 8]] D.West `shouldBe`
