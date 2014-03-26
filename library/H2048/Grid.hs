@@ -15,6 +15,7 @@ module H2048.Grid
 
 import           Data.List       (transpose)
 import qualified H2048.Direction as D
+import qualified H2048.Point     as P
 import qualified H2048.Vector    as V
 
 -- | TODO
@@ -25,7 +26,7 @@ empty :: Int -> Int -> Grid
 empty = flip replicate . V.empty
 
 -- | TODO
-emptyPoints :: Grid -> [(Int, Int)]
+emptyPoints :: Grid -> [P.Point]
 emptyPoints g = zip [0 ..] (fmap V.emptyIndexes g) >>= go
   where
     go (x, ys) = fmap ((,) x) ys
