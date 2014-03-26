@@ -41,13 +41,17 @@ rotate = fmap reverse . transpose
 
 -- | TODO
 rotateFrom :: Grid -> D.Direction -> Grid
-rotateFrom g d = head (drop n (iterate rotate g))
+rotateFrom g d = head (drop n gs)
   where
     n = 1 + fromEnum (maxBound :: D.Direction) - fromEnum d
+    gs = iterate rotate g
 
 -- | TODO
 rotateTo :: Grid -> D.Direction -> Grid
-rotateTo g d = head (drop (fromEnum d) (iterate rotate g))
+rotateTo g d = head (drop n gs)
+  where
+    n = fromEnum d
+    gs = iterate rotate g
 
 -- | TODO
 score :: Grid -> Int
