@@ -2,6 +2,7 @@
 module H2048.Vector
     ( Vector
     , empty
+    , emptyIndexes
     , parse
     , render
     , score
@@ -10,6 +11,7 @@ module H2048.Vector
 
 import           Data.List   (group)
 import           Data.Maybe  (isJust)
+import           Data.Maybe  (isNothing)
 import           Data.Monoid ((<>))
 import qualified H2048.Tile  as T
 
@@ -19,6 +21,10 @@ type Vector = [T.Tile]
 -- | TODO
 empty :: Int -> Vector
 empty = flip replicate T.empty
+
+-- | TODO
+emptyIndexes :: Vector -> [Int]
+emptyIndexes = fmap fst . filter (isNothing . snd) . zip [0 ..]
 
 -- | TODO
 parse :: String -> Vector

@@ -12,6 +12,13 @@ spec = do
         it "returns [Nothing, Nothing] for 2" $ do
             empty 2 `shouldBe` [Nothing, Nothing]
 
+    describe "emptyIndexes" $ do
+        it "returns [] for []" $ do
+            emptyIndexes [] `shouldBe` []
+
+        it "returns the indexes without tiles" $ do
+            emptyIndexes [Nothing, Just 2, Nothing, Just 4] `shouldBe` [0, 2]
+
     describe "parse" $ do
         it "returns [] for \"\"" $ do
             parse "" `shouldBe` []
