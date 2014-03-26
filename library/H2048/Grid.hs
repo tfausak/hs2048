@@ -71,9 +71,7 @@ score = sum . fmap V.score
 set :: Grid -> T.Tile -> P.Point -> Grid
 set g t p = zipWith go [0 ..] g
   where
-    go i v = if i == x then V.set v t y else v
-    x = fst p
-    y = snd p
+    go i v = if i == P.x p then V.set v t (P.y p) else v
 
 -- | TODO
 shift :: Grid -> Grid
