@@ -5,6 +5,7 @@ module H2048.Grid
     , parse
     , render
     , score
+    , shift
     ) where
 
 import qualified H2048.Vector as V
@@ -27,3 +28,7 @@ render = unlines . fmap V.render
 -- | TODO
 score :: Grid -> Int
 score = sum . fmap V.score
+
+-- | TODO
+shift :: Grid -> Grid
+shift = fmap V.shift

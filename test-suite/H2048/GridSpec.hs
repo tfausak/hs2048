@@ -32,3 +32,18 @@ spec = do
 
         it "returns 14 for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
             score [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` 14
+
+    describe "shift" $ do
+        it "returns [] for []" $ do
+            shift [] `shouldBe` []
+
+        it "shifts toward the heads" $ do
+            shift [[Nothing, Just 2], [Nothing, Just 4]] `shouldBe`
+                [[Just 2, Nothing], [Just 4, Nothing]]
+
+        it "combines like tiles" $ do
+            shift [[Just 2, Just 2]] `shouldBe` [[Just 4, Nothing]]
+
+        it "only combines pairs" $ do
+            shift [[Just 2, Just 2, Just 2, Just 2]] `shouldBe`
+                [[Just 4, Just 4, Nothing, Nothing]]
