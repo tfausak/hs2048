@@ -13,6 +13,23 @@ spec = do
         it "returns [[Nothing], [Nothing]] for 1 2" $ do
             empty 1 2 `shouldBe` [[Nothing], [Nothing]]
 
+    describe "move" $ do
+        it "moves West" $ do
+            move [[Nothing, Just 2], [Just 4, Nothing]] D.West `shouldBe`
+                [[Just 2, Nothing], [Just 4, Nothing]]
+
+        it "moves South" $ do
+            move [[Nothing, Just 2], [Just 4, Nothing]] D.South `shouldBe`
+                [[Nothing, Nothing], [Just 4, Just 2]]
+
+        it "moves East" $ do
+            move [[Nothing, Just 2], [Just 4, Nothing]] D.East `shouldBe`
+                [[Nothing, Just 2], [Nothing, Just 4]]
+
+        it "moves North" $ do
+            move [[Nothing, Just 2], [Just 4, Nothing]] D.North `shouldBe`
+                [[Just 4, Just 2], [Nothing, Nothing]]
+
     describe "parse" $ do
         it "returns [] for \"\"" $ do
             parse "" `shouldBe` []

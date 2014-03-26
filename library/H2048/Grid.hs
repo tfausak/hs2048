@@ -2,6 +2,7 @@
 module H2048.Grid
     ( Grid
     , empty
+    , move
     , parse
     , render
     , rotate
@@ -21,6 +22,10 @@ type Grid = [V.Vector]
 -- | TODO
 empty :: Int -> Int -> Grid
 empty = flip replicate . V.empty
+
+-- | TODO
+move :: Grid -> D.Direction -> Grid
+move g d = rotateFrom (shift (rotateTo g d)) d
 
 -- | TODO
 parse :: String -> Grid
