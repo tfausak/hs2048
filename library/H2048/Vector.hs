@@ -6,6 +6,7 @@ module H2048.Vector
     , parse
     , render
     , score
+    , set
     , shift
     ) where
 
@@ -37,6 +38,10 @@ render = unwords . fmap T.render
 -- | TODO
 score :: Vector -> Int
 score = sum . fmap T.score
+
+-- | TODO
+set :: Vector -> T.Tile -> Int -> Vector
+set v t i = take i v <> [t] <> drop (i + 1) v
 
 -- | TODO
 shift :: Vector -> Vector

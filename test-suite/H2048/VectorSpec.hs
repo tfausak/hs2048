@@ -40,6 +40,10 @@ spec = do
         it "returns 14 for [Nothing, Just 2]" $ do
             score [Nothing, Just 2] `shouldBe` 2
 
+    describe "set" $ do
+        it "sets the tile at the index" $ do
+            set [Nothing, Nothing] (Just 2) 0 `shouldBe` [Just 2, Nothing]
+
     describe "shift" $ do
         it "returns [] for []" $ do
             shift [] `shouldBe` []
