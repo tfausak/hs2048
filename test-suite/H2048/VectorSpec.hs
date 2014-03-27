@@ -46,8 +46,8 @@ spec = do
         it "returns \"\" for []" $ do
             render [] `shouldBe` ""
 
-        it "returns \"- 2\" for [Nothing, Just 2]" $ do
-            render [Nothing, Just 2] `shouldBe` "- 2"
+        it "returns \"-\t2\" for [Nothing, Just 2]" $ do
+            render [Nothing, Just 2] `shouldBe` "-\t2"
 
     describe "score" $ do
         it "returns 0 for []" $ do

@@ -11,7 +11,7 @@ module H2048.Vector
     , shift
     ) where
 
-import           Data.List   (group)
+import           Data.List   (group, intercalate)
 import           Data.Maybe  (isJust)
 import           Data.Maybe  (isNothing)
 import           Data.Monoid ((<>))
@@ -38,7 +38,7 @@ parse = fmap T.parse . words
 
 -- | TODO
 render :: Vector -> String
-render = unwords . fmap T.render
+render = intercalate "\t" . fmap T.render
 
 -- | TODO
 score :: Vector -> Int

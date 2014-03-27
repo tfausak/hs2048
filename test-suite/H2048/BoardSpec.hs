@@ -72,8 +72,8 @@ spec = do
         it "returns \"\" for []" $ do
             render [] `shouldBe` ""
 
-        it "returns \"- 2\n4 8\n\" for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
-            render [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` "- 2\n4 8\n"
+        it "returns \"-\t2\n4\t8\n\" for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
+            render [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` "-\t2\n4\t8\n"
 
     describe "rotate" $ do
         it "returns [] for []" $ do
