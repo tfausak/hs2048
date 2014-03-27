@@ -6,6 +6,21 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    describe "randomEmptyIndex" $ do
+        it "returns an empty index" $ do
+            let g = mkStdGen 0
+                v = [Nothing, Nothing]
+            fst (randomEmptyIndex v g) `shouldBe` 1
+
+        it "returns an empty index" $ do
+            let g = mkStdGen 53668
+                v = [Nothing, Nothing]
+            fst (randomEmptyIndex v g) `shouldBe` 0
+
+        it "returns a generator" $ do
+            let g = mkStdGen 0
+            show (snd (randomEmptyIndex [] g)) `shouldBe` "40014 40692"
+
     describe "randomTile" $ do
         it "returns a 2 tile" $ do
             let g = mkStdGen 0
