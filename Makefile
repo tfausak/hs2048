@@ -5,6 +5,12 @@ all: install configure build haddock test hpc
 build:
 	cabal build
 
+clean:
+	cabal clean
+	if test -d .cabal-sandbox; then cabal sandbox delete; fi
+	if test -d .hpc; then rm -r .hpc; fi
+	if test -e tmp/*.html; then rm tmp/*.html; fi
+
 configure:
 	cabal configure --enable-tests
 
