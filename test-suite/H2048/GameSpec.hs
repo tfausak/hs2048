@@ -6,6 +6,19 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    describe "isOver" $ do
+        it "returns True for []" $ do
+            isOver [] `shouldBe` True
+
+        it "returns False if there are empty tiles" $ do
+            isOver [[Nothing]] `shouldBe` False
+
+        it "returns False if there are moves" $ do
+            isOver [[Just 2, Just 2]] `shouldBe` False
+
+        it "returns True if there are no empty tiles and no moves" $ do
+            isOver [[Just 2]] `shouldBe` True
+
     describe "randomEmptyIndex" $ do
         it "returns an empty index" $ do
             let g = mkStdGen 0
