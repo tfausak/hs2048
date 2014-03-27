@@ -5,6 +5,7 @@ import qualified H2048.BoardBench
 import qualified H2048.DirectionBench
 import qualified H2048.GameBench
 import qualified H2048.PointBench
+import qualified H2048.SettingsBench
 import qualified H2048.TileBench
 import qualified H2048.VectorBench
 import qualified H2048Bench
@@ -19,5 +20,6 @@ main = defaultMain
     , bgroup "H2048.Direction" H2048.DirectionBench.benchmarks
     , bgroup "H2048.Point" H2048.PointBench.benchmarks
     , bgroup "H2048.Game" H2048.GameBench.benchmarks
+    , bgroup "H2048.Settings" H2048.SettingsBench.benchmarks
     -- HASKELETON: , bgroup "New.Module" New.ModuleBench.benchmarks
     ]
