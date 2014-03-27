@@ -5,6 +5,22 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    describe "canShift" $ do
+        it "returns False for []" $ do
+            canShift [] `shouldBe` False
+
+        it "returns False for all empty tiles" $ do
+            canShift [Nothing, Nothing] `shouldBe` False
+
+        it "returns True if a tile can be shifted" $ do
+            canShift [Nothing, Just 2] `shouldBe` True
+
+        it "returns True if a tile can be combined" $ do
+            canShift [Just 2, Just 2] `shouldBe` True
+
+        it "returns False if no tiles can be combined" $ do
+            canShift [Just 2, Just 4] `shouldBe` False
+
     describe "empty" $ do
         it "returns [] for 0" $ do
             empty 0 `shouldBe` []

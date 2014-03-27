@@ -1,6 +1,7 @@
 -- | TODO
 module H2048.Vector
     ( Vector
+    , canShift
     , empty
     , emptyIndexes
     , parse
@@ -18,6 +19,10 @@ import qualified H2048.Tile  as T
 
 -- | TODO
 type Vector = [T.Tile]
+
+-- | TODO
+canShift :: Vector -> Bool
+canShift v = shift v /= v
 
 -- | TODO
 empty :: Int -> Vector

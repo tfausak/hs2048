@@ -6,6 +6,29 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    describe "canMove" $ do
+        it "returns False for []" $ do
+            canMove [] D.West `shouldBe` False
+
+        it "can move West" $ do
+            canMove [[Nothing, Just 2]] D.West `shouldBe` True
+
+        it "can move South" $ do
+            canMove [[Just 2], [Nothing]] D.South `shouldBe` True
+
+        it "can't move East" $ do
+            canMove [[Nothing, Just 2]] D.East `shouldBe` False
+
+        it "can't move North" $ do
+            canMove [[Just 2], [Nothing]] D.North `shouldBe` False
+
+    describe "canShift" $ do
+        it "returns False for []" $ do
+            canShift [] `shouldBe` False
+
+        it "returns True if any of the vectors can be shifted" $ do
+            canShift [[Nothing, Nothing], [Nothing, Just 2]] `shouldBe` True
+
     describe "empty" $ do
         it "returns [] for 0 0" $ do
             empty 0 0 `shouldBe` []

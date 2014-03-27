@@ -1,6 +1,8 @@
 -- | TODO
 module H2048.Board
     ( Board
+    , canMove
+    , canShift
     , empty
     , emptyPoints
     , move
@@ -22,6 +24,14 @@ import qualified H2048.Vector    as V
 
 -- | TODO
 type Board = [V.Vector]
+
+-- | TODO
+canMove :: Board -> D.Direction -> Bool
+canMove b d = move b d /= b
+
+-- | TODO
+canShift :: Board -> Bool
+canShift b = shift b /= b
 
 -- | TODO
 empty :: Int -> Int -> Board
