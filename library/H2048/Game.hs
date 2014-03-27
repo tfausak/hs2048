@@ -3,17 +3,19 @@ module H2048.Game
     ( addRandomTile
     , addRandomTiles
     , isOver
+    , new
     , randomEmptyIndex
     , randomEmptyPoint
     , randomTile
     ) where
 
-import           Data.Maybe    (fromJust)
-import qualified H2048.Board   as B
-import qualified H2048.Point   as P
-import qualified H2048.Tile    as T
-import qualified H2048.Vector  as V
-import qualified System.Random as R
+import           Data.Maybe     (fromJust)
+import qualified H2048.Board    as B
+import qualified H2048.Point    as P
+import qualified H2048.Settings as S
+import qualified H2048.Tile     as T
+import qualified H2048.Vector   as V
+import qualified System.Random  as R
 
 -- | TODO
 addRandomTile :: R.RandomGen r => B.Board -> r -> (B.Board, r)
@@ -38,6 +40,10 @@ isOver b = cantMove && haveNoEmptyPoints
   where
     cantMove = not (any (B.canMove b) [minBound ..])
     haveNoEmptyPoints = null (B.emptyPoints b)
+
+-- | TODO
+new :: R.RandomGen r => r -> (B.Board, r)
+new = addRandomTiles S.tiles (B.empty S.width S.height)
 
 -- | TODO
 randomEmptyIndex :: R.RandomGen r => V.Vector -> r -> (Maybe Int, r)

@@ -47,6 +47,15 @@ spec = do
         it "returns True if there are no empty tiles and no moves" $ do
             isOver [[Just 2]] `shouldBe` True
 
+    describe "new" $ do
+        it "returns a new game" $ do
+            fst (new (mkStdGen 0)) `shouldBe`
+                [ [Just 2, Nothing, Nothing, Nothing]
+                , [Nothing, Nothing, Nothing, Nothing]
+                , [Nothing, Nothing, Nothing, Nothing]
+                , [Nothing, Just 2, Nothing, Nothing]
+                ]
+
     describe "randomEmptyIndex" $ do
         it "returns Nothing for []" $ do
             fst (randomEmptyIndex [] (mkStdGen 0)) `shouldBe` Nothing
