@@ -9,4 +9,4 @@ data Direction
     | South
     | East
     | North
-    deriving (Bounded, Enum)
+    deriving (Bounded, Enum, Show)

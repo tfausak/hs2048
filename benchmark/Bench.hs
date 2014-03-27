@@ -4,6 +4,7 @@ import           Criterion.Main       (bgroup, defaultMain)
 import qualified H2048.BoardBench
 import qualified H2048.DirectionBench
 import qualified H2048.GameBench
+import qualified H2048.MainBench
 import qualified H2048.PointBench
 import qualified H2048.SettingsBench
 import qualified H2048.TileBench
@@ -21,5 +22,6 @@ main = defaultMain
     , bgroup "H2048.Point" H2048.PointBench.benchmarks
     , bgroup "H2048.Game" H2048.GameBench.benchmarks
     , bgroup "H2048.Settings" H2048.SettingsBench.benchmarks
+    , bgroup "H2048.Main" H2048.MainBench.benchmarks
     -- HASKELETON: , bgroup "New.Module" New.ModuleBench.benchmarks
     ]

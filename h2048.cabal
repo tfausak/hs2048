@@ -88,6 +88,7 @@ test-suite hspec
         H2048.Point
         H2048.Game
         H2048.Settings
+        H2048.Main
         -- HASKELETON: New.Module
         H2048Spec
         H2048.TileSpec
@@ -97,6 +98,7 @@ test-suite hspec
         H2048.PointSpec
         H2048.GameSpec
         H2048.SettingsSpec
+        H2048.MainSpec
         -- HASKELETON: New.ModuleSpec
     type:
         exitcode-stdio-1.0
