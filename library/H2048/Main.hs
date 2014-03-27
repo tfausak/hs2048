@@ -9,12 +9,13 @@ import qualified H2048.Direction as D
 getMove :: IO (Maybe D.Direction)
 getMove = do
     a <- getChar
-    b <- getChar
-    c <- getChar
-
-    return $ case [a, b, c] of
-        "\ESC[D" -> Just D.West
-        "\ESC[B" -> Just D.South
-        "\ESC[C" -> Just D.East
-        "\ESC[A" -> Just D.North
-        _ -> Nothing
+    if a /= '\ESC' then return Nothing else do
+        b <- getChar
+        if b /= '[' then return Nothing else do
+            c <- getChar
+            return $ case c of
+                'D' -> Just D.West
+                'B' -> Just D.South
+                'C' -> Just D.East
+                'A' -> Just D.North
+                _ -> Nothing
