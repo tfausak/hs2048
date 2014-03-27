@@ -13,6 +13,27 @@ spec = do
         it "adds a random tile" $ do
             fst (addRandomTile [[Nothing]] (mkStdGen 0)) `shouldBe` [[Just 2]]
 
+        it "returns id when there are no empty tiles" $ do
+            fst (addRandomTile [[Just 2]] (mkStdGen 0)) `shouldBe`
+                [[Just 2]]
+
+    describe "addRandomTiles" $ do
+        it "returns id for 0" $ do
+            fst (addRandomTiles 0 [[Nothing]] (mkStdGen 0)) `shouldBe`
+                [[Nothing]]
+
+        it "adds a random tile" $ do
+            fst (addRandomTiles 1 [[Nothing]] (mkStdGen 0)) `shouldBe`
+                [[Just 2]]
+
+        it "adds some random tiles" $ do
+            fst (addRandomTiles 2 [[Nothing, Nothing]] (mkStdGen 0)) `shouldBe`
+                [[Just 2, Just 2]]
+
+        it "returns id when there are no empty tiles" $ do
+            fst (addRandomTiles 1 [[Just 2]] (mkStdGen 0)) `shouldBe`
+                [[Just 2]]
+
     describe "isOver" $ do
         it "returns True for []" $ do
             isOver [] `shouldBe` True

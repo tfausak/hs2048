@@ -1,6 +1,7 @@
 -- | TODO
 module H2048.Game
     ( addRandomTile
+    , addRandomTiles
     , isOver
     , randomEmptyIndex
     , randomEmptyPoint
@@ -23,6 +24,13 @@ addRandomTile b r = case p of
     b' = B.set b t (fromJust p)
     (p, r') = randomEmptyPoint b r
     (t, r'') = randomTile r'
+
+-- | TODO
+addRandomTiles :: R.RandomGen r => Int -> B.Board -> r -> (B.Board, r)
+addRandomTiles 0 b r = (b, r)
+addRandomTiles n b r = addRandomTiles (n - 1) b' r'
+  where
+    (b', r') = addRandomTile b r
 
 -- | TODO
 isOver :: B.Board -> Bool
