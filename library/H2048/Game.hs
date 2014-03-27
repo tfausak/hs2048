@@ -1,6 +1,7 @@
 -- | TODO
 module H2048.Game
-    ( isOver
+    ( addRandomTile
+    , isOver
     , randomEmptyIndex
     , randomEmptyPoint
     , randomTile
@@ -11,6 +12,14 @@ import qualified H2048.Point   as P
 import qualified H2048.Tile    as T
 import qualified H2048.Vector  as V
 import qualified System.Random as R
+
+-- | TODO
+addRandomTile :: R.RandomGen r => B.Board -> r -> (B.Board, r)
+addRandomTile b r = (b', r'')
+  where
+    b' = B.set b t p
+    (t, r') = randomTile r
+    (p, r'') = randomEmptyPoint b r'
 
 -- | TODO
 isOver :: B.Board -> Bool

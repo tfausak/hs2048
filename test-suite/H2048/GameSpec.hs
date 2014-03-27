@@ -6,6 +6,14 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    describe "addRandomTile" $ do
+        it "adds a random tile" $ do
+            fst (addRandomTile [[Nothing]] (mkStdGen 0)) `shouldBe` [[Just 2]]
+
+        it "returns a generator" $ do
+            show (snd (addRandomTile [] (mkStdGen 0))) `shouldBe`
+                "1346387765 2103410263"
+
     describe "isOver" $ do
         it "returns True for []" $ do
             isOver [] `shouldBe` True
