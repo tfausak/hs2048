@@ -7,12 +7,11 @@ import           Test.Hspec
 spec :: Spec
 spec = do
     describe "addRandomTile" $ do
+        it "returns id for []" $ do
+            fst (addRandomTile [] (mkStdGen 0)) `shouldBe` []
+
         it "adds a random tile" $ do
             fst (addRandomTile [[Nothing]] (mkStdGen 0)) `shouldBe` [[Just 2]]
-
-        it "returns a generator" $ do
-            show (snd (addRandomTile [] (mkStdGen 0))) `shouldBe`
-                "1346387765 2103410263"
 
     describe "isOver" $ do
         it "returns True for []" $ do
@@ -28,34 +27,32 @@ spec = do
             isOver [[Just 2]] `shouldBe` True
 
     describe "randomEmptyIndex" $ do
+        it "returns Nothing for []" $ do
+            fst (randomEmptyIndex [] (mkStdGen 0)) `shouldBe` Nothing
+
         it "returns an empty index" $ do
             let g = mkStdGen 0
                 v = [Nothing, Nothing]
-            fst (randomEmptyIndex v g) `shouldBe` 1
+            fst (randomEmptyIndex v g) `shouldBe` Just 1
 
         it "returns an empty index" $ do
             let g = mkStdGen 53668
                 v = [Nothing, Nothing]
-            fst (randomEmptyIndex v g) `shouldBe` 0
-
-        it "returns a generator" $ do
-            let g = mkStdGen 0
-            show (snd (randomEmptyIndex [] g)) `shouldBe` "40014 40692"
+            fst (randomEmptyIndex v g) `shouldBe` Just 0
 
     describe "randomEmptyPoint" $ do
+        it "returns Nothing for []" $ do
+            fst (randomEmptyPoint [] (mkStdGen 0)) `shouldBe` Nothing
+
         it "returns an empty point" $ do
             let g = mkStdGen 0
                 b = [[Nothing, Nothing], [Nothing, Nothing]]
-            fst (randomEmptyPoint b g) `shouldBe` (0, 1)
+            fst (randomEmptyPoint b g) `shouldBe` Just (0, 1)
 
         it "returns an empty point" $ do
             let g = mkStdGen 2
                 b = [[Nothing, Nothing], [Nothing, Nothing]]
-            fst (randomEmptyPoint b g) `shouldBe` (1, 1)
-
-        it "returns a generator" $ do
-            let g = mkStdGen 0
-            show (snd (randomEmptyPoint [] g)) `shouldBe` "40014 40692"
+            fst (randomEmptyPoint b g) `shouldBe` Just (1, 1)
 
     describe "randomTile" $ do
         it "returns a 2 tile" $ do
@@ -65,7 +62,3 @@ spec = do
         it "returns a 4 tile" $ do
             let g = mkStdGen 1
             fst (randomTile g) `shouldBe` Just 4
-
-        it "returns a generator" $ do
-            let g = mkStdGen 0
-            show (snd (randomTile g)) `shouldBe` "1601120196 1655838864"
