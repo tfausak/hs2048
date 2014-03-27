@@ -21,6 +21,21 @@ spec = do
             let g = mkStdGen 0
             show (snd (randomEmptyIndex [] g)) `shouldBe` "40014 40692"
 
+    describe "randomEmptyPoint" $ do
+        it "returns an empty point" $ do
+            let g = mkStdGen 0
+                b = [[Nothing, Nothing], [Nothing, Nothing]]
+            fst (randomEmptyPoint b g) `shouldBe` (0, 1)
+
+        it "returns an empty point" $ do
+            let g = mkStdGen 2
+                b = [[Nothing, Nothing], [Nothing, Nothing]]
+            fst (randomEmptyPoint b g) `shouldBe` (1, 1)
+
+        it "returns a generator" $ do
+            let g = mkStdGen 0
+            show (snd (randomEmptyPoint [] g)) `shouldBe` "40014 40692"
+
     describe "randomTile" $ do
         it "returns a 2 tile" $ do
             let g = mkStdGen 0
