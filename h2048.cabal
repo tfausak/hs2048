@@ -36,6 +36,15 @@ library
         Haskell2010
     exposed-modules:
         H2048
+        H2048.Board
+        H2048.Direction
+        H2048.Game
+        H2048.Main
+        H2048.Point
+        H2048.Settings
+        H2048.Tile
+        H2048.Vector
+        -- HASKELETON: New.Module
     ghc-prof-options:
         -auto-all
         -prof
@@ -50,6 +59,7 @@ executable h2048
     build-depends:
         base
       , h2048
+      , random == 1.*
     default-language:
         Haskell2010
     ghc-prof-options:
