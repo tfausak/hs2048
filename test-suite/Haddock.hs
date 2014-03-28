@@ -15,7 +15,7 @@ average :: (Fractional a, Real b) => [b] -> a
 average xs = realToFrac (sum xs) / genericLength xs
 
 expected :: Fractional a => a
-expected = 90
+expected = 100
 
 main :: IO ()
 main = do
