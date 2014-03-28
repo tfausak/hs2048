@@ -34,6 +34,14 @@ play (b, r) = do
         then putStrLn "Game over."
         else do
             m <- getMove
+            putStrLn ""
             case m of
-                Nothing -> putStrLn "Invalid move."
-                Just d -> play (G.addRandomTile (B.move b d) r)
+                Nothing -> do
+                    putStrLn "Unknown move."
+                    play (b, r)
+                Just d -> do
+                    if B.canMove b d
+                        then play (G.addRandomTile (B.move b d) r)
+                        else do
+                            putStrLn "Invalid move."
+                            play (b, r)
