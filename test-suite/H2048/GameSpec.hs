@@ -6,32 +6,34 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    let r = mkStdGen 0
+
     describe "addRandomTile" $ do
         it "returns id for []" $ do
-            fst (addRandomTile [] (mkStdGen 0)) `shouldBe` []
+            fst (addRandomTile [] r) `shouldBe` []
 
         it "adds a random tile" $ do
-            fst (addRandomTile [[Nothing]] (mkStdGen 0)) `shouldBe` [[Just 2]]
+            fst (addRandomTile [[Nothing]] r) `shouldBe` [[Just 2]]
 
         it "returns id when there are no empty tiles" $ do
-            fst (addRandomTile [[Just 2]] (mkStdGen 0)) `shouldBe`
+            fst (addRandomTile [[Just 2]] r) `shouldBe`
                 [[Just 2]]
 
     describe "addRandomTiles" $ do
         it "returns id for 0" $ do
-            fst (addRandomTiles 0 [[Nothing]] (mkStdGen 0)) `shouldBe`
+            fst (addRandomTiles 0 [[Nothing]] r) `shouldBe`
                 [[Nothing]]
 
         it "adds a random tile" $ do
-            fst (addRandomTiles 1 [[Nothing]] (mkStdGen 0)) `shouldBe`
+            fst (addRandomTiles 1 [[Nothing]] r) `shouldBe`
                 [[Just 2]]
 
         it "adds some random tiles" $ do
-            fst (addRandomTiles 2 [[Nothing, Nothing]] (mkStdGen 0)) `shouldBe`
+            fst (addRandomTiles 2 [[Nothing, Nothing]] r) `shouldBe`
                 [[Just 2, Just 2]]
 
         it "returns id when there are no empty tiles" $ do
-            fst (addRandomTiles 1 [[Just 2]] (mkStdGen 0)) `shouldBe`
+            fst (addRandomTiles 1 [[Just 2]] r) `shouldBe`
                 [[Just 2]]
 
     describe "isOver" $ do
@@ -49,7 +51,7 @@ spec = do
 
     describe "new" $ do
         it "returns a new game" $ do
-            fst (new (mkStdGen 0)) `shouldBe`
+            fst (new r) `shouldBe`
                 [ [Just 2, Nothing, Nothing, Nothing]
                 , [Nothing, Nothing, Nothing, Nothing]
                 , [Nothing, Nothing, Nothing, Nothing]
@@ -58,7 +60,7 @@ spec = do
 
     describe "randomEmptyIndex" $ do
         it "returns Nothing for []" $ do
-            fst (randomEmptyIndex [] (mkStdGen 0)) `shouldBe` Nothing
+            fst (randomEmptyIndex [] r) `shouldBe` Nothing
 
         it "returns an empty index" $ do
             let g = mkStdGen 0
@@ -72,7 +74,7 @@ spec = do
 
     describe "randomEmptyPoint" $ do
         it "returns Nothing for []" $ do
-            fst (randomEmptyPoint [] (mkStdGen 0)) `shouldBe` Nothing
+            fst (randomEmptyPoint [] r) `shouldBe` Nothing
 
         it "returns an empty point" $ do
             let g = mkStdGen 0
