@@ -1,6 +1,7 @@
 -- | TODO
 module H2048.Main
-    ( getMove
+    ( direction
+    , getMove
     , play
     ) where
 
@@ -11,6 +12,14 @@ import qualified H2048.Game      as G
 import qualified System.Random   as R
 
 -- | TODO
+direction :: Char -> Maybe D.Direction
+direction 'D' = Just D.West
+direction 'B' = Just D.South
+direction 'C' = Just D.East
+direction 'A' = Just D.North
+direction _ = Nothing
+
+-- | TODO
 getMove :: IO (Maybe D.Direction)
 getMove = do
     a <- getChar
@@ -18,12 +27,7 @@ getMove = do
         b <- getChar
         if b /= '[' then return Nothing else do
             c <- getChar
-            return $ case c of
-                'D' -> Just D.West
-                'B' -> Just D.South
-                'C' -> Just D.East
-                'A' -> Just D.North
-                _ -> Nothing
+            return (direction c)
 
 -- | TODO
 play :: R.RandomGen r => (B.Board, r) -> IO ()
