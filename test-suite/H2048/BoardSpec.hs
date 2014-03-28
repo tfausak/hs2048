@@ -69,11 +69,12 @@ spec = do
             parse "- 2\n4 8\n" `shouldBe` [[Nothing, Just 2], [Just 4, Just 8]]
 
     describe "render" $ do
-        it "returns \"\" for []" $ do
+        it "renders []" $ do
             render [] `shouldBe` ""
 
-        it "returns \"-\t2\n4\t8\n\" for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
-            render [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` "-\t2\n4\t8\n"
+        it "renders a board" $ do
+            render [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe`
+                "\ESC[30m-\ESC[0m\t\ESC[31m2\ESC[0m\n\ESC[32m4\ESC[0m\t\ESC[33m8\ESC[0m\n"
 
     describe "rotate" $ do
         it "returns [] for []" $ do

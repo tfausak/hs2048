@@ -36,7 +36,9 @@ score (Just n) = n
 --
 
 color :: Tile -> String
-color t = "\ESC[" <> show (30 + rank t) <> "m"
+color t = "\ESC[" <> show (30 + go (rank t)) <> "m"
+  where
+    go n = if n > 6 then n + 4 else n
 
 rank :: Tile -> Int
 rank Nothing = 0

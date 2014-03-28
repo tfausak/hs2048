@@ -18,11 +18,17 @@ spec = do
             \ n -> parse (show n) == Just n
 
     describe "render" $ do
-        it "returns \"-\" for Nothing" $ do
-            render Nothing `shouldBe` "-"
+        it "renders Nothing" $ do
+            render Nothing `shouldBe` "\ESC[30m-\ESC[0m"
 
-        prop "returns \"n\" for Just n" $ do
-            \ n -> render (Just n) == show n
+        it "renders Just 2" $ do
+            render (Just 2) `shouldBe` "\ESC[31m2\ESC[0m"
+
+        it "renders Just 4" $ do
+            render (Just 4) `shouldBe` "\ESC[32m4\ESC[0m"
+
+        it "renders Just 2048" $ do
+            render (Just 2048) `shouldBe` "\ESC[45m2048\ESC[0m"
 
     describe "score" $ do
         it "returns 0 for Nothing" $ do

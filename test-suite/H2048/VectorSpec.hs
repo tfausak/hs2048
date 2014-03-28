@@ -43,11 +43,12 @@ spec = do
             parse "- 2" `shouldBe` [Nothing, Just 2]
 
     describe "render" $ do
-        it "returns \"\" for []" $ do
+        it "renders []" $ do
             render [] `shouldBe` ""
 
-        it "returns \"-\t2\" for [Nothing, Just 2]" $ do
-            render [Nothing, Just 2] `shouldBe` "-\t2"
+        it "renders a vector" $ do
+            render [Nothing, Just 2] `shouldBe`
+                "\ESC[30m-\ESC[0m\t\ESC[31m2\ESC[0m"
 
     describe "score" $ do
         it "returns 0 for []" $ do
