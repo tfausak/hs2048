@@ -2,6 +2,7 @@
 module H2048.Game
     ( addRandomTile
     , addRandomTiles
+    , hasWon
     , isOver
     , new
     , randomEmptyIndex
@@ -33,6 +34,10 @@ addRandomTiles 0 b r = (b, r)
 addRandomTiles n b r = addRandomTiles (n - 1) b' r'
   where
     (b', r') = addRandomTile b r
+
+-- | TODO
+hasWon :: B.Board -> Bool
+hasWon = any (any (maybe False (>= 2048)))
 
 -- | TODO
 isOver :: B.Board -> Bool

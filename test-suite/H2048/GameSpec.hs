@@ -36,6 +36,22 @@ spec = do
             fst (addRandomTiles 1 [[Just 2]] r) `shouldBe`
                 [[Just 2]]
 
+    describe "hasWon" $ do
+        it "returns False for []" $ do
+            hasWon [] `shouldBe` False
+
+        it "returns False without any tiles" $ do
+            hasWon [[Nothing]] `shouldBe` False
+
+        it "returns False with no tiles above 2048" $ do
+            hasWon [[Just 1024]] `shouldBe` False
+
+        it "returns True with tiles equal to 2048" $ do
+            hasWon [[Just 2048]] `shouldBe` True
+
+        it "returns True with tiles above 2048" $ do
+            hasWon [[Just 4096]] `shouldBe` True
+
     describe "isOver" $ do
         it "returns True for []" $ do
             isOver [] `shouldBe` True
