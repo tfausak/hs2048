@@ -1,6 +1,9 @@
-.PHONY: build configure haddock hpc install repl run test
+.PHONY: bench build configure haddock hpc install repl run test
 
-all: install configure build haddock test hpc
+all: install configure build haddock test hpc bench
+
+bench:
+	cabal bench
 
 build:
 	cabal build
@@ -12,7 +15,7 @@ clean:
 	if test -e tmp/*.html; then rm tmp/*.html; fi
 
 configure:
-	cabal configure --enable-tests
+	cabal configure --enable-benchmarks --enable-tests
 
 format:
 	git ls-files '*.hs' | xargs -n 1 scan --inplace-modify
@@ -28,7 +31,7 @@ hpc:
 
 install:
 	cabal sandbox init
-	cabal install --enable-tests --flags=documentation --only-dependencies
+	cabal install --enable-benchmarks --enable-tests --flags=documentation --only-dependencies
 
 repl:
 	cabal repl lib:h2048

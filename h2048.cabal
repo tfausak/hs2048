@@ -186,7 +186,8 @@ benchmark benchmarks
     build-depends:
         base
       , h2048
-      , criterion == 0.*
+      , criterion == 0.6.*
+          , statistics < 0.11
     default-language:
         Haskell2010
     hs-source-dirs:
