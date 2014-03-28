@@ -12,7 +12,18 @@ $ vagrant ssh
 ``` sh
 $ cd /vagrant
 $ make
+$ make run
 ```
+
+- <https://github.com/DavidMihola/2048>
+- <https://github.com/Javran/h2048>
+- <https://github.com/YawarRaza7349/2048Game.hs>
+- <https://github.com/badamson/2048.hs>
+- <https://github.com/chrismwendt/2048>
+- <https://github.com/egonSchiele/ones>
+- <https://github.com/godel9/2048-hs>
+- <https://github.com/jgallag88/2048>
+- <https://github.com/uncleverone/haskell2048>
 
 [1]: https://github.com/tfausak/h2048
 [2]: https://travis-ci.org/tfausak/h2048.svg?branch=master
