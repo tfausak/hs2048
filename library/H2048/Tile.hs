@@ -7,7 +7,7 @@ module H2048.Tile
     , score
     ) where
 
-import Data.Monoid ((<>))
+import           Data.Monoid ((<>))
 
 -- | TODO
 type Tile = Maybe Int
@@ -25,15 +25,24 @@ parse s = Just (read s)
 render :: Tile -> String
 render t = color t <> go t <> reset
   where
-    color Nothing = "\ESC[30m"
-    color (Just n) = "\ESC[" <> show (30 + f (rank n)) <> "m"
-    f x = if x > 6 then x + 4 else x
-    rank x = floor (logBase 2 (fromIntegral x))
     go Nothing = "-"
     go (Just n) = show n
-    reset = "\ESC[0m"
 
 -- | TODO
 score :: Tile -> Int
 score Nothing = 0
 score (Just n) = n
+
+--
+
+color :: Tile -> String
+color t = "\ESC[" <> show (30 + rank t) <> "m"
+
+rank :: Tile -> Int
+rank Nothing = 0
+rank (Just n) = floor (logBase b (fromIntegral n))
+  where
+    b = 2 :: Double
+
+reset :: String
+reset = "\ESC[0m"
