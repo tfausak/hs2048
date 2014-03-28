@@ -7,6 +7,7 @@ import           System.Random (getStdGen)
 main :: IO ()
 main = do
     IO.hSetBuffering IO.stdin IO.NoBuffering
+    IO.hSetEcho IO.stdin False
 
     r <- getStdGen
     play (new r)

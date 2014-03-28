@@ -34,7 +34,6 @@ play (b, r) = do
         then putStrLn "Game over."
         else do
             m <- getMove
-            putStrLn ""
             case m of
                 Nothing -> do
                     putStrLn "Unknown move."
