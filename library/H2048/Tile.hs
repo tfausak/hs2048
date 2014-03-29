@@ -72,7 +72,7 @@ render (Just n) = show n
     >>> score (Just 2)
     0
     >>> score (Just 2048)
-    22528
+    20480
 -}
 score :: Tile -> Int
 score Nothing = 0
