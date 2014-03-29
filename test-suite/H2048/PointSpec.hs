@@ -5,7 +5,7 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
-    let p = (1, 2) :: Point
+    let p = (1, 2)
 
     describe "x" $ do
         it "returns the first value" $ do
