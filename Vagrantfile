@@ -10,7 +10,7 @@ Vagrant.configure('2') do |config|
     config.vm.provision :shell, inline: <<-'SH'
         set -e -x
         apt-get update
-        apt-get -y install haskell-platform haskell-platform-doc
+        apt-get -y install git haskell-platform haskell-platform-doc
     SH
 
     config.vm.provision :shell, inline: <<-'SH', privileged: false
