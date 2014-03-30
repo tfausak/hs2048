@@ -9,6 +9,10 @@ spec = do
         it "returns 4" $ do
             height `shouldBe` 4
 
+    describe "maxTile" $ do
+        it "returns 2048" $ do
+            maxTile `shouldBe` 2048
+
     describe "tiles" $ do
         it "returns 2" $ do
             tiles `shouldBe` 2

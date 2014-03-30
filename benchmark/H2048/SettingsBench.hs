@@ -8,6 +8,9 @@ benchmarks =
     [ bgroup "height"
         [ bench "" $ nf (const height) ()
         ]
+    , bgroup "maxTile"
+        [ bench "" $ nf (const maxTile) ()
+        ]
     , bgroup "tiles"
         [ bench "" $ nf (const tiles) ()
         ]

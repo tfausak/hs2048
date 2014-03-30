@@ -1,6 +1,7 @@
 -- | Game settings.
 module H2048.Settings
     ( height
+    , maxTile
     , tiles
     , width
     ) where
@@ -13,6 +14,15 @@ module H2048.Settings
 -}
 height :: Int
 height = 4
+
+{- |
+    Returns the maximum tile value.
+
+    >>> maxTile
+    2048
+-}
+maxTile :: Int
+maxTile = 2048
 
 {- |
     Returns the number of starting tiles.
