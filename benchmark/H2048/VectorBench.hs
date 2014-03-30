@@ -29,7 +29,7 @@ benchmarks =
         , bench "v2" $ nf score v2
         ]
     , bgroup "set"
-        [
+        [ bench "" $ nf (set v1 (Just 2)) 3
         ]
     , bgroup "shift"
         [ bench "v1" $ nf shift v1

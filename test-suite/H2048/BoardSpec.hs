@@ -74,7 +74,7 @@ spec = do
 
         it "renders a board" $ do
             render [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe`
-                "\ESC[30m-\ESC[0m\t\ESC[31m2\ESC[0m\n\ESC[32m4\ESC[0m\t\ESC[33m8\ESC[0m\n"
+                "- 2\n4 8\n"
 
     describe "rotate" $ do
         it "returns [] for []" $ do
@@ -122,8 +122,8 @@ spec = do
         it "returns 0 for []" $ do
             score [] `shouldBe` 0
 
-        it "returns 14 for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
-            score [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` 14
+        it "returns 20 for [[Nothing, Just 2], [Just 4, Just 8]]" $ do
+            score [[Nothing, Just 2], [Just 4, Just 8]] `shouldBe` 20
 
     describe "set" $ do
         it "sets the tile at the point" $ do
