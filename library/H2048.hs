@@ -1,4 +1,6 @@
--- | TODO
+{- |
+    Top-level module. Re-exports things from all other modules.
+-}
 module H2048 (module H2048) where
 
 import           H2048.Board     as H2048

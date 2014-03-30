@@ -47,7 +47,7 @@ addRandomTiles n b r = addRandomTiles (n - 1) b' r'
     (b', r') = addRandomTile b r
 
 {- |
-    Determines if the game has been won.
+    Determines if the game has been won. See 'H2048.Settings.maxTile'.
 
     >>> hasWon [[Just 2048]]
     True
@@ -70,7 +70,8 @@ isOver b = cantMove && haveNoEmptyPoints
 
 {- |
     Creates a new game by making an empty board and adding some random tiles to
-    it.
+    it. See 'H2048.Settings.width', 'H2048.Settings.height', and
+    'H2048.Settings.tiles'.
 
     >>> new (R.mkStdGen 0)
     ([[Just 2,Nothing,Nothing,Nothing],[Nothing,Nothing,Nothing,Nothing],[Nothing,Nothing,Nothing,Nothing],[Nothing,Just 2,Nothing,Nothing]],2127568003 1780294415)

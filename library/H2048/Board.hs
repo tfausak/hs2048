@@ -51,7 +51,9 @@ canShift b = shift b /= b
     >>> empty 2 1
     [[Nothing,Nothing]]
 -}
-empty :: Int -> Int -> Board
+empty :: Int -- ^ Width
+    -> Int -- ^ Height
+    -> Board
 empty = flip replicate . V.empty
 
 {- |
@@ -102,8 +104,9 @@ rotate :: Board -> Board
 rotate = fmap reverse . transpose
 
 {- |
-    Rotates the board so that 'West' is at the left, assuming the given
-    direction is currently at the left. This is the inverse of 'rotateTo'.
+    Rotates the board so that 'H2048.Direction.West' is at the left, assuming
+    the given direction is currently at the left. This is the inverse of
+    'rotateTo'.
 
     >>> rotateFrom [[Just 4, Nothing], [Nothing, Just 2]] D.South
     [[Nothing,Just 2],[Just 4,Nothing]]
