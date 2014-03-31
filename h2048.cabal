@@ -58,6 +58,7 @@ library
         H2048.Settings
         H2048.Tile
         H2048.Vector
+        H2048.Renderer
         -- HASKELETON: New.Module
     ghc-prof-options:
         -auto-all
@@ -113,6 +114,7 @@ test-suite hspec
         H2048.Game
         H2048.Settings
         H2048.Main
+        H2048.Renderer
         -- HASKELETON: New.Module
         H2048Spec
         H2048.TileSpec
@@ -123,6 +125,7 @@ test-suite hspec
         H2048.GameSpec
         H2048.SettingsSpec
         H2048.MainSpec
+        H2048.RendererSpec
         -- HASKELETON: New.ModuleSpec
     type:
         exitcode-stdio-1.0
