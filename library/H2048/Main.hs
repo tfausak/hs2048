@@ -6,10 +6,10 @@ module H2048.Main
     , play
     ) where
 
-import           Data.Monoid     ((<>))
 import qualified H2048.Board     as B
 import qualified H2048.Direction as D
 import qualified H2048.Game      as G
+import           H2048.Renderer  (renderGame)
 import           System.IO       (BufferMode (NoBuffering), hSetBuffering,
                                   hSetEcho, stdin)
 import qualified System.Random   as R
@@ -60,8 +60,7 @@ play (b, r) = do
     hSetBuffering stdin NoBuffering
     hSetEcho stdin False
 
-    putStrLn ("Score: " <> show (B.score b))
-    putStr (B.render b)
+    putStr (renderGame b)
 
     if G.hasWon b then putStrLn "You won!" else do
         if G.isOver b then putStrLn "You lost." else do
