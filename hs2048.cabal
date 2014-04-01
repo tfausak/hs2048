@@ -1,0 +1,202 @@
+author:
+    Taylor Fausak
+bug-reports:
+    https://github.com/tfausak/hs2048/issues
+build-type:
+    Simple
+cabal-version:
+    >= 1.18
+category:
+    Game
+copyright:
+    2014 Taylor Fausak <taylor@fausak.me>
+--description: TODO
+extra-source-files:
+    CHANGELOG.md
+    CONTRIBUTING.md
+    README.md
+homepage:
+    https://github.com/tfausak/hs2048
+license-file:
+    LICENSE.txt
+license:
+    MIT
+maintainer:
+    taylor@fausak.me
+name:
+    hs2048
+synopsis:
+    A 2048 clone in Haskell.
+tested-with:
+    GHC == 7.6.3
+version:
+    0.0.0
+
+source-repository head
+    location:
+        git://github.com/tfausak/threase.git
+    type:
+        git
+
+flag documentation
+    default:
+        False
+
+library
+    build-depends:
+        base
+      , random == 1.*
+    default-language:
+        Haskell2010
+    exposed-modules:
+        Hs2048
+        Hs2048.Board
+        Hs2048.Direction
+        Hs2048.Game
+        Hs2048.Main
+        Hs2048.Point
+        Hs2048.Renderer
+        Hs2048.Settings
+        Hs2048.Tile
+        Hs2048.Vector
+        -- HASKELETON: New.Module
+    ghc-prof-options:
+        -auto-all
+        -prof
+    hs-source-dirs:
+        library
+
+    if flag(documentation)
+        build-depends:
+            hscolour == 1.*
+
+executable hs2048
+    build-depends:
+        base
+      , hs2048
+      , random == 1.*
+    default-language:
+        Haskell2010
+    ghc-prof-options:
+        -auto-all
+        -prof
+    hs-source-dirs:
+        executable
+    main-is:
+        Main.hs
+
+test-suite hspec
+    build-depends:
+        base
+      , hs2048
+      , hspec == 1.*
+          , HUnit
+          , QuickCheck
+      , random == 1.*
+    default-language:
+        Haskell2010
+    ghc-options:
+        -fhpc
+        -Wall
+        -Werror
+    hs-source-dirs:
+        library
+        test-suite
+    main-is:
+        Spec.hs
+    other-modules:
+        Hs2048
+        Hs2048.Board
+        Hs2048.Direction
+        Hs2048.Game
+        Hs2048.Main
+        Hs2048.Point
+        Hs2048.Renderer
+        Hs2048.Settings
+        Hs2048.Tile
+        Hs2048.Vector
+        -- HASKELETON: New.Module
+        Hs2048Spec
+        Hs2048.BoardSpec
+        Hs2048.DirectionSpec
+        Hs2048.GameSpec
+        Hs2048.MainSpec
+        Hs2048.PointSpec
+        Hs2048.RendererSpec
+        Hs2048.SettingsSpec
+        Hs2048.TileSpec
+        Hs2048.VectorSpec
+        -- HASKELETON: New.ModuleSpec
+    type:
+        exitcode-stdio-1.0
+
+test-suite doctest
+    build-depends:
+        base
+      , Glob == 0.*
+      , doctest == 0.*
+    default-language:
+        Haskell2010
+    hs-source-dirs:
+        test-suite
+    main-is:
+        DocTest.hs
+    type:
+        exitcode-stdio-1.0
+
+test-suite hpc
+    build-depends:
+        base
+      , process == 1.*
+      , regex-compat == 0.*
+    default-language:
+        Haskell2010
+    hs-source-dirs:
+        test-suite
+    main-is:
+        HPC.hs
+    type:
+        exitcode-stdio-1.0
+
+test-suite haddock
+    build-depends:
+        base
+      , process == 1.*
+      , regex-compat == 0.*
+    default-language:
+        Haskell2010
+    hs-source-dirs:
+        test-suite
+    main-is:
+        Haddock.hs
+    type:
+        exitcode-stdio-1.0
+
+test-suite hlint
+    build-depends:
+        base
+      , hlint == 1.*
+    default-language:
+        Haskell2010
+    hs-source-dirs:
+        test-suite
+    main-is:
+        HLint.hs
+    type:
+        exitcode-stdio-1.0
+
+benchmark benchmarks
+    build-depends:
+        base
+      , hs2048
+      , criterion == 0.6.*
+          , statistics < 0.11
+      , random == 1.*
+    default-language:
+        Haskell2010
+    hs-source-dirs:
+        benchmark
+    main-is:
+        Bench.hs
+    type:
+        exitcode-stdio-1.0

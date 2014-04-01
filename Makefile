@@ -23,7 +23,7 @@ format:
 
 haddock:
 	cabal haddock --hyperlink-source
-	# dist/doc/html/h2048/index.html
+	# dist/doc/html/hs2048/index.html
 
 hpc:
 	hpc markup --destdir=tmp dist/hpc/tix/hspec/hspec.tix
@@ -31,13 +31,13 @@ hpc:
 
 install:
 	cabal sandbox init
-	cabal install --enable-benchmarks --enable-tests --flags=documentation --only-dependencies
+	cabal install --enable-benchmarks --enable-tests --flags=documentation --only-dependencies --reorder-goals
 
 repl:
-	cabal repl lib:h2048
+	cabal repl lib:hs2048
 
 run:
-	cabal run h2048
+	cabal run hs2048
 
 test:
 	cabal test

@@ -1,4 +1,4 @@
-# [h2048][1]
+# [hs2048][1]
 
 [![Build Status][2]][3]
 
@@ -26,7 +26,7 @@ $ make run
 - <https://github.com/mitchellwrosen/hs2048-free>
 - <https://github.com/uncleverone/haskell2048>
 
-[1]: https://github.com/tfausak/h2048
-[2]: https://travis-ci.org/tfausak/h2048.svg?branch=master
-[3]: https://travis-ci.org/tfausak/h2048
+[1]: https://github.com/tfausak/hs2048
+[2]: https://travis-ci.org/tfausak/hs2048.svg?branch=master
+[3]: https://travis-ci.org/tfausak/hs2048
 [4]: https://github.com/gabrielecirulli/2048

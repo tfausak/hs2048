@@ -97,7 +97,7 @@ writeBenchmarkFile m = writeFile (benchmarkPath m) (benchmarkTemplate m)
 -- Cabal
 
 cabalPath :: FilePath
-cabalPath = "h2048.cabal"
+cabalPath = "hs2048.cabal"
 
 updateCabal :: String -> IO ()
 updateCabal = updateFile cabalPath
@@ -131,7 +131,7 @@ librarySuffix :: String
 librarySuffix = ""
 
 updateLibrary :: String -> IO ()
-updateLibrary = updateFile (libraryPath "H2048")
+updateLibrary = updateFile (libraryPath "Hs2048")
 
 writeLibraryFile :: String -> IO ()
 writeLibraryFile m = writeFile (libraryPath m) (libraryTemplate m)
