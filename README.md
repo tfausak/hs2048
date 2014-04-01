@@ -4,6 +4,10 @@
 
 A [2048][4] clone in Haskell.
 
+![Screenshot](http://i.imgur.com/utw0O1h.png)
+
+## Setup
+
 ``` sh
 $ vagrant up
 $ vagrant ssh
@@ -14,6 +18,8 @@ $ cd /vagrant
 $ make
 $ make run
 ```
+
+## Others
 
 - <https://github.com/DavidMihola/2048>
 - <https://github.com/Javran/h2048>
