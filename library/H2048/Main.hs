@@ -68,5 +68,5 @@ play (b, r) = do
             case m of
                 Nothing -> putStrLn "Unknown move." >> play (b, r)
                 Just d -> if B.canMove b d
-                    then play (G.addRandomTile (B.move b d) r)
+                    then putStrLn (D.render d) >> play (G.addRandomTile (B.move b d) r)
                     else putStrLn "Invalid move." >> play (b, r)
