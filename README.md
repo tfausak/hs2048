@@ -23,6 +23,7 @@ $ make run
 - <https://github.com/egonSchiele/ones>
 - <https://github.com/godel9/2048-hs>
 - <https://github.com/jgallag88/2048>
+- <https://github.com/mitchellwrosen/hs2048-free>
 - <https://github.com/uncleverone/haskell2048>
 
 [1]: https://github.com/tfausak/h2048
