@@ -7,20 +7,23 @@ import           Test.Hspec
 spec :: Spec
 spec = do
     describe "direction" $ do
-        it "returns West" $ do
-            direction 'D' `shouldBe` Just D.West
-
-        it "returns South" $ do
-            direction 'B' `shouldBe` Just D.South
-
-        it "returns East" $ do
-            direction 'C' `shouldBe` Just D.East
-
-        it "returns North" $ do
-            direction 'A' `shouldBe` Just D.North
-
         it "returns Nothing" $ do
-            direction '?' `shouldBe` Nothing
+            direction "" `shouldBe` Nothing
+
+        it "returns Just West" $ do
+            direction "\ESC[D" `shouldBe` Just D.West
+
+        it "returns Just South" $ do
+            direction "\ESC[B" `shouldBe` Just D.South
+
+        it "returns Just East" $ do
+            direction "\ESC[C" `shouldBe` Just D.East
+
+        it "returns Just North" $ do
+            direction "\ESC[A" `shouldBe` Just D.North
+
+    describe "getChars" $ do
+        it "is" pending
 
     describe "getMove" $ do
         it "is" pending

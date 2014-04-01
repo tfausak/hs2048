@@ -1,76 +1,59 @@
 module H2048.VectorSpec (spec) where
 
+import qualified H2048.Tile            as T
 import           H2048.Vector
 import           Test.Hspec
+import           Test.Hspec.QuickCheck
 
 spec :: Spec
 spec = do
+    let v1 = replicate 4 Nothing
+        v2 = replicate 4 (Just 2)
+
     describe "canShift" $ do
-        it "returns False for []" $ do
-            canShift [] `shouldBe` False
+        it "returns false if the vector can't be shifted" $ do
+            canShift v1 `shouldBe` False
 
-        it "returns False for all empty tiles" $ do
-            canShift [Nothing, Nothing] `shouldBe` False
-
-        it "returns True if a tile can be shifted" $ do
-            canShift [Nothing, Just 2] `shouldBe` True
-
-        it "returns True if a tile can be combined" $ do
-            canShift [Just 2, Just 2] `shouldBe` True
-
-        it "returns False if no tiles can be combined" $ do
-            canShift [Just 2, Just 4] `shouldBe` False
+        it "returns true if the vector can be shifted" $ do
+            canShift v2 `shouldBe` True
 
     describe "empty" $ do
-        it "returns [] for 0" $ do
-            empty 0 `shouldBe` []
-
-        it "returns [Nothing, Nothing] for 2" $ do
-            empty 2 `shouldBe` [Nothing, Nothing]
+        prop "returns n empty tiles" $ \ n ->
+            -- TODO: There has to be a better way to set bounds.
+            (n > 127) || (empty n == replicate n T.empty)
 
     describe "emptyIndexes" $ do
-        it "returns [] for []" $ do
-            emptyIndexes [] `shouldBe` []
+        it "returns the empty indexes" $ do
+            emptyIndexes v1 `shouldBe` [0 .. length v1 - 1]
 
-        it "returns the indexes without tiles" $ do
-            emptyIndexes [Nothing, Just 2, Nothing, Just 4] `shouldBe` [0, 2]
+        it "doesn't return indexes with tiles" $ do
+            emptyIndexes v2 `shouldBe` []
 
     describe "parse" $ do
-        it "returns [] for \"\"" $ do
-            parse "" `shouldBe` []
+        it "parses \"- - - -\"" $ do
+            parse "- - - -" `shouldBe` v1
 
-        it "returns [Nothing, Just 2] for \"- 2\"" $ do
-            parse "- 2" `shouldBe` [Nothing, Just 2]
+        prop "parses \"n n n n\"" $ \ n ->
+            parse (unwords (replicate 4 (show n))) == replicate 4 (Just n)
 
     describe "render" $ do
-        it "renders []" $ do
-            render [] `shouldBe` ""
+        it "renders [Nothing, Nothing, Nothing, Nothing]" $ do
+            render v1 `shouldBe` "- - - -"
 
-        it "renders a vector" $ do
-            render [Nothing, Just 2] `shouldBe`
-                "\ESC[30m-\ESC[0m\t\ESC[31m2\ESC[0m"
+        prop "renders [Just n, Just n, Just n, Just n]" $ \ n ->
+            render (replicate 4 (Just n)) == unwords (replicate 4 (show n))
 
     describe "score" $ do
-        it "returns 0 for []" $ do
-            score [] `shouldBe` 0
+        it "scores [Nothing, Nothing, Nothing, Nothing]" $ do
+            score v1 `shouldBe` 0
 
-        it "returns 14 for [Nothing, Just 2]" $ do
-            score [Nothing, Just 2] `shouldBe` 2
+        prop "scores [Just n, Just n, Just n, Just n]" $ \ n ->
+            score (replicate 4 (Just n)) == 4 * T.score (Just n)
 
     describe "set" $ do
         it "sets the tile at the index" $ do
-            set [Nothing, Nothing] (Just 2) 0 `shouldBe` [Just 2, Nothing]
+            set v1 (Just 2) 0 `shouldBe` [Just 2, Nothing, Nothing, Nothing]
 
     describe "shift" $ do
-        it "returns [] for []" $ do
-            shift [] `shouldBe` []
-
-        it "shifts toward the head" $ do
-            shift [Nothing, Just 2] `shouldBe` [Just 2, Nothing]
-
-        it "combines like tiles" $ do
-            shift [Just 2, Just 2] `shouldBe` [Just 4, Nothing]
-
-        it "only combines pairs" $ do
-            shift [Just 2, Just 2, Just 2, Just 2] `shouldBe`
-                [Just 4, Just 4, Nothing, Nothing]
+        it "shifts the vector" $ do
+            shift v2 `shouldBe` [Just 4, Just 4, Nothing, Nothing]

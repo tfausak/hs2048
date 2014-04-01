@@ -1,50 +1,79 @@
--- | TODO
+-- | Types and functions for manipulating tiles.
 module H2048.Tile
     ( Tile
     , empty
     , parse
+    , rank
     , render
     , score
     ) where
 
-import           Data.Monoid ((<>))
-
--- | TODO
+{- |
+    Represents a tile on the game board. Can be empty (@Nothing@) or can have a
+    value (@Just n@). By convention, a tile's value is always a power of 2.
+-}
 type Tile = Maybe Int
 
--- | TODO
+{- |
+    Returns the empty tile.
+
+    >>> empty
+    Nothing
+-}
 empty :: Tile
 empty = Nothing
 
--- | TODO
+{- |
+    Parses a string as a tile. This is the inverse of 'render'.
+
+    >>> parse "-"
+    Nothing
+    >>> parse "2"
+    Just 2
+-}
 parse :: String -> Tile
 parse "-" = Nothing
 parse s = Just (read s)
 
--- | TODO
-render :: Tile -> String
-render t = color t <> go t <> reset
-  where
-    go Nothing = "-"
-    go (Just n) = show n
+{- |
+    Calculates the rank of a tile.
 
--- | TODO
-score :: Tile -> Int
-score Nothing = 0
-score (Just n) = n
-
---
-
-color :: Tile -> String
-color t = "\ESC[" <> show (30 + go (rank t)) <> "m"
-  where
-    go n = if n > 6 then n + 4 else n
-
+    >>> rank Nothing
+    0
+    >>> rank (Just 2)
+    1
+    >>> rank (Just 2048)
+    11
+-}
 rank :: Tile -> Int
 rank Nothing = 0
-rank (Just n) = floor (logBase b (fromIntegral n))
+rank (Just n) = floor (logBase b n')
   where
     b = 2 :: Double
+    n' = fromIntegral n
 
-reset :: String
-reset = "\ESC[0m"
+{- |
+    Renders a tile as a string. This is the inverse of 'parse'.
+
+    >>> render Nothing
+    "-"
+    >>> render (Just 2)
+    "2"
+-}
+render :: Tile -> String
+render Nothing = "-"
+render (Just n) = show n
+
+{- |
+    Calculates the score of a tile.
+
+    >>> score Nothing
+    0
+    >>> score (Just 2)
+    0
+    >>> score (Just 2048)
+    20480
+-}
+score :: Tile -> Int
+score Nothing = 0
+score t@(Just n) = n * (rank t - 1)

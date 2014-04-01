@@ -7,32 +7,33 @@ import           Test.Hspec.QuickCheck
 spec :: Spec
 spec = do
     describe "empty" $ do
-        it "returns Nothing" $ do
+        it "is Nothing" $ do
             empty `shouldBe` Nothing
 
     describe "parse" $ do
-        it "returns Nothing for \"-\"" $ do
+        it "parses \"-\"" $ do
             parse "-" `shouldBe` Nothing
 
-        prop "returns Just n for \"n\"" $ do
-            \ n -> parse (show n) == Just n
+        prop "parses \"n\"" $ \ n ->
+            parse (show n) == Just n
+
+    describe "rank" $ do
+        it "ranks Nothing" $ do
+            rank Nothing `shouldBe` 0
+
+        prop "ranks Just n" $ \ n ->
+            rank (Just n) == floor (logBase (2 :: Double) (fromIntegral n))
 
     describe "render" $ do
         it "renders Nothing" $ do
-            render Nothing `shouldBe` "\ESC[30m-\ESC[0m"
+            render Nothing `shouldBe` "-"
 
-        it "renders Just 2" $ do
-            render (Just 2) `shouldBe` "\ESC[31m2\ESC[0m"
-
-        it "renders Just 4" $ do
-            render (Just 4) `shouldBe` "\ESC[32m4\ESC[0m"
-
-        it "renders Just 2048" $ do
-            render (Just 2048) `shouldBe` "\ESC[45m2048\ESC[0m"
+        prop "renders Just n" $ \ n ->
+            render (Just n) == show n
 
     describe "score" $ do
-        it "returns 0 for Nothing" $ do
+        it "scores Nothing" $ do
             score Nothing `shouldBe` 0
 
-        prop "returns n for Just n" $ do
-            \ n -> score (Just n) == n
+        prop "scores Just n" $ \ n ->
+            score (Just n) == n * (rank (Just n) - 1)

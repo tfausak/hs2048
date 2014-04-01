@@ -1,7 +1,11 @@
 module H2048.MainBench (benchmarks) where
 
 import           Criterion
-import           H2048.Main ()
+import           H2048.Main
 
 benchmarks :: [Benchmark]
-benchmarks = []
+benchmarks =
+    [ bgroup "direction"
+        [ bench "\ESC[A" $ whnf direction "\ESC[A"
+        ]
+    ]

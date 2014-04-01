@@ -1,17 +1,30 @@
--- | TODO
+-- | Types and functions for manipulating points.
 module H2048.Point
     ( Point
     , x
     , y
     ) where
 
--- | TODO
+{- |
+    Represents a point on a game board. The top-left corner is (0, 0) with x
+    increasing left-to-right and y increasing top-to-bottom.
+-}
 type Point = (Int, Int)
 
--- | TODO
+{- |
+    Returns the x part of a point.
+
+    >>> x (1, 2)
+    1
+-}
 x :: Point -> Int
 x = fst
 
--- | TODO
+{- |
+    Returns the y part of a point.
+
+    >>> y (1, 2)
+    2
+-}
 y :: Point -> Int
 y = snd
