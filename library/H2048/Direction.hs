@@ -2,6 +2,7 @@
 module H2048.Direction
     ( Direction (..)
     , directions
+    , render
     ) where
 
 {- |
@@ -23,3 +24,15 @@ data Direction
 -}
 directions :: [Direction]
 directions = [minBound ..]
+
+{- |
+    Renders a direction as a string.
+
+    >>> render West
+    "\8592"
+-}
+render :: Direction -> String
+render West = "\x2190"
+render South = "\x2193"
+render East = "\x2192"
+render North = "\x2191"

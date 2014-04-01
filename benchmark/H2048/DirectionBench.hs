@@ -8,4 +8,7 @@ benchmarks =
     [ bgroup "directions"
         [ bench "" $ whnf (const directions) ()
         ]
+    , bgroup "render"
+        [ bench "West" $ nf render West
+        ]
     ]

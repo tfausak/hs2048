@@ -31,3 +31,16 @@ spec = do
     describe "directions" $ do
         it "returns the directions" $ do
             directions `shouldBe` [West, South, East, North]
+
+    describe "render" $ do
+        it "renders West" $ do
+            render West `shouldBe` "\x2190"
+
+        it "renders South" $ do
+            render South `shouldBe` "\x2193"
+
+        it "renders East" $ do
+            render East `shouldBe` "\x2192"
+
+        it "renders North" $ do
+            render North `shouldBe` "\x2191"

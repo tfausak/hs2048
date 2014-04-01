@@ -4,7 +4,7 @@
 module H2048 (module H2048) where
 
 import           H2048.Board     as H2048
-import           H2048.Direction as H2048
+import           H2048.Direction as H2048 hiding (render)
 import           H2048.Game      as H2048
 import           H2048.Main      as H2048
 import           H2048.Point     as H2048
