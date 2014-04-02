@@ -10,7 +10,11 @@ category:
     Game
 copyright:
     2014 Taylor Fausak <taylor@fausak.me>
---description: TODO
+description:
+    A <https://github.com/gabrielecirulli/2048 2048> clone in Haskell.
+    .
+    This implements the game logic as well as a console interface for playing
+    it.
 extra-source-files:
     CHANGELOG.md
     CONTRIBUTING.md
