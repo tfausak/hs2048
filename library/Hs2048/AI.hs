@@ -60,4 +60,5 @@ quality :: B.Board -> Int
 quality b = sum
     [ 1 * B.score b
     , 1 * length (moves b)
+    , 1 * length (B.emptyPoints b)
     ]
