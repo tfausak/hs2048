@@ -1,12 +1,30 @@
 -- | Functions for solving the game.
 module Hs2048.AI
-    ( boards
+    ( bestMove
+    , boards
     , moves
     , quality
     ) where
 
+import           Data.List        (genericLength, maximumBy)
+import           Data.Ord         (comparing)
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
+
+average :: (Real a, Fractional b) => [a] -> b
+average xs = realToFrac (sum xs) / genericLength xs
+
+{- |
+    Determines the best direction to move a board in.
+
+    >>> bestMove [[Nothing, Just 2], [Nothing, Just 2]]
+    North
+-}
+bestMove :: B.Board -> D.Direction
+bestMove b = fst (maximumBy go bs)
+  where
+    go = comparing ((average :: [Int] -> Float) . fmap quality . boards . snd)
+    bs = moves b
 
 {- |
     Generates all possible next states from a board.

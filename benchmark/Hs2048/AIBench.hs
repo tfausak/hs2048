@@ -5,7 +5,10 @@ import           Hs2048.AI
 
 benchmarks :: [Benchmark]
 benchmarks =
-    [ bgroup "boards"
+    [ bgroup "bestMove"
+        [ bench "" $ whnf bestMove [[Nothing, Just 2], [Just 2, Nothing]]
+        ]
+    , bgroup "boards"
         [ bench "[]" $ nf boards []
         ]
     , bgroup "moves"
