@@ -8,7 +8,7 @@ spec :: Spec
 spec = do
     describe "bestMove" $ do
         it "returns the best move" $ do
-            bestMove [[Nothing, Just 2], [Just 2, Nothing]] `shouldBe` D.North
+            bestMove [[Nothing, Just 2], [Just 2, Nothing]] `shouldBe` D.West
 
     describe "boards" $ do
         it "returns [] for an empty board" $ do

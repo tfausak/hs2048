@@ -18,13 +18,13 @@ average xs = realToFrac (sum xs) / genericLength xs
     Determines the best direction to move a board in.
 
     >>> bestMove [[Nothing, Just 2], [Nothing, Just 2]]
-    North
+    South
 -}
 bestMove :: B.Board -> D.Direction
 bestMove b = fst (maximumBy go bs)
   where
     go = comparing ((average :: [Int] -> Float) . fmap quality . boards . snd)
-    bs = moves b
+    bs = reverse (moves b)
 
 {- |
     Generates all possible next states from a board.
