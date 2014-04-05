@@ -6,8 +6,9 @@ module Hs2048.AI
     , quality
     ) where
 
-import           Data.List        (genericLength, maximumBy)
+import           Data.List        (genericLength, group, maximumBy, sort)
 import           Data.Ord         (comparing)
+import Data.Maybe (catMaybes)
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
 
@@ -38,6 +39,9 @@ boards b = ps >>= go
     ps = B.emptyPoints b
     go p = [B.set b t p | t <- [Just 2, Just 4]]
 
+duplicates :: B.Board -> [[Int]]
+duplicates = group . sort . concatMap catMaybes
+
 {- |
     Determines which directions a board can be moved in.
 
@@ -61,4 +65,5 @@ quality b = sum
     [ 1 * B.score b
     , 1 * length (moves b)
     , 1 * length (B.emptyPoints b)
+    , -1 * length (duplicates b)
     ]
