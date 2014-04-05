@@ -38,7 +38,7 @@ version:
 
 source-repository head
     location:
-        git://github.com/tfausak/threase.git
+        git://github.com/tfausak/hs2048.git
     type:
         git
 
