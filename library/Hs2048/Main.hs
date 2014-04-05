@@ -7,7 +7,7 @@ module Hs2048.Main
     , play
     ) where
 
-import qualified Hs2048.AI as AI
+import qualified Hs2048.AI        as AI
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
 import qualified Hs2048.Game      as G
@@ -55,6 +55,7 @@ getMove :: IO (Maybe D.Direction)
 getMove = fmap (maybe Nothing direction) getChars
 
 {- |
+    Automatically plays the game as an AI.
 -}
 plai :: R.RandomGen r => (B.Board, r) -> IO ()
 plai (b, r) = do

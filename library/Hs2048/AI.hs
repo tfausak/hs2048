@@ -7,11 +7,17 @@ module Hs2048.AI
     ) where
 
 import           Data.List        (genericLength, group, maximumBy, sort)
+import           Data.Maybe       (catMaybes)
 import           Data.Ord         (comparing)
-import Data.Maybe (catMaybes)
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
 
+{- |
+    Calculates the average value of a list.
+
+    >>> average [1, 2, 3]
+    2.0
+-}
 average :: (Real a, Fractional b) => [a] -> b
 average xs = realToFrac (sum xs) / genericLength xs
 
@@ -39,8 +45,14 @@ boards b = ps >>= go
     ps = B.emptyPoints b
     go p = [B.set b t p | t <- [Just 2, Just 4]]
 
+{- |
+    Detects the duplicate tiles on a board and returns them in groups.
+
+    >>> duplicates [[Nothing, Just 2], [Just 2, Nothing]]
+    [[2,2]]
+-}
 duplicates :: B.Board -> [[Int]]
-duplicates = group . sort . concatMap catMaybes
+duplicates = group . sort . (=<<) catMaybes
 
 {- |
     Determines which directions a board can be moved in.
