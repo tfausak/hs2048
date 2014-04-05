@@ -3,9 +3,11 @@ module Hs2048.Main
     ( direction
     , getChars
     , getMove
+    , plai
     , play
     ) where
 
+import qualified Hs2048.AI as AI
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
 import qualified Hs2048.Game      as G
@@ -51,6 +53,14 @@ getChars = do
 -}
 getMove :: IO (Maybe D.Direction)
 getMove = fmap (maybe Nothing direction) getChars
+
+{- |
+-}
+plai :: R.RandomGen r => (B.Board, r) -> IO ()
+plai (b, r) = do
+    if G.hasWon b || G.isOver b
+        then putStr (renderGame b)
+        else plai (G.addRandomTile (B.move b (AI.bestMove b)) r)
 
 {- |
     Plays the game.
