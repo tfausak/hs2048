@@ -82,50 +82,18 @@ quality b = sum
     , 1 * length (moves b)
     , 1 * length (B.emptyPoints b)
     , -1 * length (duplicates b)
-    , -1 * smoothness b
+    , -1 * roughness b
     ]
 
---
+roughness :: B.Board -> Int
+roughness b = boardRoughness b + boardRoughness (B.rotate b)
 
-neighbors :: B.Board -> P.Point -> [P.Point]
-neighbors b (x, y) = filter (inBounds b)
-    [ (x - 1, y    )
-    , (x + 1, y    )
-    , (x    , y - 1)
-    , (x    , y + 1)
-    ]
+boardRoughness :: B.Board -> Int
+boardRoughness = sum . map vectorRoughness
 
-inBounds :: B.Board -> P.Point -> Bool
-inBounds b (x, y) =
-    x >= 0 &&
-    y >= 0 &&
-    y < height &&
-    x < width
+vectorRoughness :: V.Vector -> Int
+vectorRoughness ts = sum deltas
   where
-    height = length b
-    width = if null b then 0 else length (head b)
-
-difference :: T.Tile -> T.Tile -> Int
-difference a b = T.rank a - T.rank b
-
-get :: B.Board -> P.Point -> T.Tile
-get b (x, y) = b !! y !! x
-
-points :: B.Board -> [P.Point]
-points b =
-    [ (x, y)
-    | x <- [0 .. width - 1]
-    , y <- [0 .. height - 1]
-    ]
-  where
-    height = length b
-    width = if null b then 0 else length (head b)
-
-edges :: B.Board -> [(P.Point, P.Point)]
-edges b = concatMap (\ p -> zip (repeat p) (neighbors b p)) (points b)
-
-weight :: B.Board -> (P.Point, P.Point) -> Int
-weight b (p1, p2) = abs (difference (get b p1) (get b p2))
-
-smoothness :: B.Board -> Int
-smoothness b = sum (map (weight b) (edges b))
+    deltas = zipWith delta ranks (tail ranks)
+    delta a b = abs (a - b)
+    ranks = map T.rank ts
