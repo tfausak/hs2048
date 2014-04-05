@@ -7,13 +7,12 @@ module Hs2048.AI
     ) where
 
 import           Data.List        (genericLength, group, maximumBy, sort)
-import           Data.Maybe       (catMaybes, isJust)
+import           Data.Maybe       (catMaybes)
 import           Data.Ord         (comparing)
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
-import qualified Hs2048.Tile as T
-import qualified Hs2048.Vector as V
-import qualified Hs2048.Point as P
+import qualified Hs2048.Tile      as T
+import qualified Hs2048.Vector    as V
 
 {- |
     Calculates the average value of a list.
@@ -89,11 +88,11 @@ roughness :: B.Board -> Int
 roughness b = boardRoughness b + boardRoughness (B.rotate b)
 
 boardRoughness :: B.Board -> Int
-boardRoughness = sum . map vectorRoughness
+boardRoughness = sum . fmap vectorRoughness
 
 vectorRoughness :: V.Vector -> Int
 vectorRoughness ts = sum deltas
   where
     deltas = zipWith delta ranks (tail ranks)
     delta a b = abs (a - b)
-    ranks = map T.rank ts
+    ranks = fmap T.rank ts
