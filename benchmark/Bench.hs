@@ -1,6 +1,7 @@
 module Main (main) where
 
 import           Criterion.Main        (bgroup, defaultMain)
+import qualified Hs2048.AIBench
 import qualified Hs2048.BoardBench
 import qualified Hs2048.DirectionBench
 import qualified Hs2048.GameBench
@@ -25,5 +26,6 @@ main = defaultMain
     , bgroup "Hs2048.Settings" Hs2048.SettingsBench.benchmarks
     , bgroup "Hs2048.Tile" Hs2048.TileBench.benchmarks
     , bgroup "Hs2048.Vector" Hs2048.VectorBench.benchmarks
+    , bgroup "Hs2048.AI" Hs2048.AIBench.benchmarks
     -- HASKELETON: , bgroup "New.Module" New.ModuleBench.benchmarks
     ]

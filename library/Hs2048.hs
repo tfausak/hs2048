@@ -3,6 +3,7 @@
 -}
 module Hs2048 (module Hs2048) where
 
+import           Hs2048.AI        as Hs2048
 import           Hs2048.Board     as Hs2048
 import           Hs2048.Direction as Hs2048 hiding (render)
 import           Hs2048.Game      as Hs2048

@@ -54,6 +54,7 @@ library
         Haskell2010
     exposed-modules:
         Hs2048
+        Hs2048.AI
         Hs2048.Board
         Hs2048.Direction
         Hs2048.Game
@@ -110,6 +111,7 @@ test-suite hspec
         Spec.hs
     other-modules:
         Hs2048
+        Hs2048.AI
         Hs2048.Board
         Hs2048.Direction
         Hs2048.Game
@@ -120,7 +122,7 @@ test-suite hspec
         Hs2048.Tile
         Hs2048.Vector
         -- HASKELETON: New.Module
-        Hs2048Spec
+        Hs2048.AISpec
         Hs2048.BoardSpec
         Hs2048.DirectionSpec
         Hs2048.GameSpec
@@ -130,6 +132,7 @@ test-suite hspec
         Hs2048.SettingsSpec
         Hs2048.TileSpec
         Hs2048.VectorSpec
+        Hs2048Spec
         -- HASKELETON: New.ModuleSpec
     type:
         exitcode-stdio-1.0
