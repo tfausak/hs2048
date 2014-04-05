@@ -57,4 +57,7 @@ moves b = fmap go ds
     0
 -}
 quality :: B.Board -> Int
-quality = B.score
+quality b = sum
+    [ 1 * B.score b
+    , 1 * length (moves b)
+    ]
