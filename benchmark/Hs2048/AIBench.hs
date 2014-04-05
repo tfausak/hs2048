@@ -5,7 +5,10 @@ import           Hs2048.AI
 
 benchmarks :: [Benchmark]
 benchmarks =
-    [ bgroup "moves"
+    [ bgroup "boards"
+        [ bench "[]" $ nf boards []
+        ]
+    , bgroup "moves"
         [ bench "[]" $ whnf moves []
         ]
     , bgroup "quality"

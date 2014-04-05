@@ -5,6 +5,10 @@ import           Test.Hspec
 
 spec :: Spec
 spec = do
+    describe "boards" $ do
+        it "returns [] for an empty board" $ do
+            boards [] `shouldBe` []
+
     describe "moves" $ do
         it "returns [] for an empty board" $ do
             moves [] `shouldBe` []
