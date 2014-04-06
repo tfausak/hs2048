@@ -7,7 +7,7 @@ module Hs2048.AI
     , roughness
     ) where
 
-import           Data.List        (genericLength, group, maximumBy, sort)
+import           Data.List        (genericLength, maximumBy)
 import           Data.Maybe       (catMaybes)
 import           Data.Ord         (comparing)
 import qualified Hs2048.Board     as B
@@ -62,7 +62,6 @@ quality b = sum
     , 1 * B.score b
     , 1 * length (moves b)
     , 1 * length (B.emptyPoints b)
-    , -1 * length (duplicates b)
     , -1 * roughness b
     ]
 
@@ -91,9 +90,6 @@ average xs = realToFrac (sum xs) / genericLength xs
 
 boardRoughness :: B.Board -> Int
 boardRoughness = sum . fmap vectorRoughness
-
-duplicates :: B.Board -> [[Int]]
-duplicates = group . sort . (=<<) catMaybes
 
 vectorRoughness :: V.Vector -> Int
 vectorRoughness v = length (filter id (zipWith (/=) ts (tail ts)))
