@@ -15,15 +15,6 @@ import qualified Hs2048.Tile      as T
 import qualified Hs2048.Vector    as V
 
 {- |
-    Calculates the average value of a list.
-
-    >>> average [1, 2, 3]
-    2.0
--}
-average :: (Real a, Fractional b) => [a] -> b
-average xs = realToFrac (sum xs) / genericLength xs
-
-{- |
     Determines the best direction to move a board in.
 
     >>> bestMove [[Nothing, Just 2], [Nothing, Just 2]]
@@ -46,15 +37,6 @@ boards b = ps >>= go
   where
     ps = B.emptyPoints b
     go p = [B.set b t p | t <- [Just 2, Just 4]]
-
-{- |
-    Detects the duplicate tiles on a board and returns them in groups.
-
-    >>> duplicates [[Nothing, Just 2], [Just 2, Nothing]]
-    [[2,2]]
--}
-duplicates :: B.Board -> [[Int]]
-duplicates = group . sort . (=<<) catMaybes
 
 {- |
     Determines which directions a board can be moved in.
@@ -84,11 +66,17 @@ quality b = sum
     , -1 * roughness b
     ]
 
-roughness :: B.Board -> Int
-roughness b = boardRoughness b + boardRoughness (B.rotate b)
+average :: (Real a, Fractional b) => [a] -> b
+average xs = realToFrac (sum xs) / genericLength xs
 
 boardRoughness :: B.Board -> Int
 boardRoughness = sum . fmap vectorRoughness
+
+duplicates :: B.Board -> [[Int]]
+duplicates = group . sort . (=<<) catMaybes
+
+roughness :: B.Board -> Int
+roughness b = boardRoughness b + boardRoughness (B.rotate b)
 
 vectorRoughness :: V.Vector -> Int
 vectorRoughness ts = sum deltas
