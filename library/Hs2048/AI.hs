@@ -72,14 +72,14 @@ quality b = sum
     each other. Smooth boards are generally better.
 
     >>> roughness [[Just 2, Just 4]]
-    2
+    1
     >>> roughness [[Just 2, Just 2]]
     0
 
     Blank tiles are ignored for the purposes of calculating roughness.
 
     >>> roughness [[Just 2, Nothing, Just 4]]
-    2
+    1
 -}
 roughness :: B.Board -> Int
 roughness b = boardRoughness b + boardRoughness (B.rotate b)
@@ -96,6 +96,6 @@ duplicates :: B.Board -> [[Int]]
 duplicates = group . sort . (=<<) catMaybes
 
 vectorRoughness :: V.Vector -> Int
-vectorRoughness v = sum (fmap abs (zipWith subtract ts (tail ts)))
+vectorRoughness v = length (filter id (zipWith (/=) ts (tail ts)))
   where
     ts = catMaybes v

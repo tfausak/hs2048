@@ -34,4 +34,4 @@ spec = do
             roughness [] `shouldBe` 0
 
         it "calculates the roughness of a board" $ do
-            roughness b `shouldBe` 5734
+            roughness b `shouldBe` 16
