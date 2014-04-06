@@ -7,11 +7,14 @@ module Hs2048.Main
     , play
     ) where
 
+import           Data.List        (maximumBy)
+import           Data.Ord         (comparing)
 import qualified Hs2048.AI        as AI
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
 import qualified Hs2048.Game      as G
 import           Hs2048.Renderer  (renderGame)
+import qualified Hs2048.Tile      as T
 import           System.IO        (BufferMode (NoBuffering), hSetBuffering,
                                    hSetEcho, stdin)
 import qualified System.Random    as R
@@ -57,11 +60,12 @@ getMove = fmap (maybe Nothing direction) getChars
 {- |
     Automatically plays the game as an AI.
 -}
-plai :: R.RandomGen r => (B.Board, r) -> IO ()
-plai (b, r) = do
-    if G.hasWon b || G.isOver b
-        then putStr (renderGame b)
-        else plai (G.addRandomTile (B.move b (AI.bestMove b)) r)
+plai :: R.RandomGen r => (B.Board, r) -> (T.Tile, Int)
+plai (b, r) = if G.isOver b
+    then (maxTile, B.score b)
+    else plai (G.addRandomTile (B.move b (AI.bestMove b)) r)
+  where
+    maxTile = maximumBy (comparing T.rank) (concat b)
 
 {- |
     Plays the game.
