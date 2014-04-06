@@ -17,6 +17,7 @@ import qualified Hs2048Bench
 main :: IO ()
 main = defaultMain
     [ bgroup "Hs2048" Hs2048Bench.benchmarks
+    , bgroup "Hs2048.AI" Hs2048.AIBench.benchmarks
     , bgroup "Hs2048.Board" Hs2048.BoardBench.benchmarks
     , bgroup "Hs2048.Direction" Hs2048.DirectionBench.benchmarks
     , bgroup "Hs2048.Game" Hs2048.GameBench.benchmarks
@@ -26,6 +27,5 @@ main = defaultMain
     , bgroup "Hs2048.Settings" Hs2048.SettingsBench.benchmarks
     , bgroup "Hs2048.Tile" Hs2048.TileBench.benchmarks
     , bgroup "Hs2048.Vector" Hs2048.VectorBench.benchmarks
-    , bgroup "Hs2048.AI" Hs2048.AIBench.benchmarks
     -- HASKELETON: , bgroup "New.Module" New.ModuleBench.benchmarks
     ]

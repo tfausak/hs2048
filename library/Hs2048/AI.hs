@@ -4,6 +4,7 @@ module Hs2048.AI
     , boards
     , moves
     , quality
+    , roughness
     ) where
 
 import           Data.List        (genericLength, group, maximumBy, sort)
@@ -11,7 +12,6 @@ import           Data.Maybe       (catMaybes)
 import           Data.Ord         (comparing)
 import qualified Hs2048.Board     as B
 import qualified Hs2048.Direction as D
-import qualified Hs2048.Tile      as T
 import qualified Hs2048.Vector    as V
 
 {- |
@@ -66,6 +66,26 @@ quality b = sum
     , -1 * roughness b
     ]
 
+{- |
+    Calculates the roughness of a board. A rough board has lots of different
+    tiles next to each other. A smooth board has lot of the same tiles next to
+    each other. Smooth boards are generally better.
+
+    >>> roughness [[Just 2, Just 4]]
+    2
+    >>> roughness [[Just 2, Just 2]]
+    0
+
+    Blank tiles are ignored for the purposes of calculating roughness.
+
+    >>> roughness [[Just 2, Nothing, Just 4]]
+    2
+-}
+roughness :: B.Board -> Int
+roughness b = boardRoughness b + boardRoughness (B.rotate b)
+
+--
+
 average :: (Real a, Fractional b) => [a] -> b
 average xs = realToFrac (sum xs) / genericLength xs
 
@@ -75,12 +95,7 @@ boardRoughness = sum . fmap vectorRoughness
 duplicates :: B.Board -> [[Int]]
 duplicates = group . sort . (=<<) catMaybes
 
-roughness :: B.Board -> Int
-roughness b = boardRoughness b + boardRoughness (B.rotate b)
-
 vectorRoughness :: V.Vector -> Int
-vectorRoughness ts = sum deltas
+vectorRoughness v = sum (fmap abs (zipWith subtract ts (tail ts)))
   where
-    deltas = zipWith delta ranks (tail ranks)
-    delta a b = abs (a - b)
-    ranks = fmap T.rank ts
+    ts = catMaybes v
