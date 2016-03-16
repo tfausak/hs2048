@@ -68,10 +68,10 @@ spec = do
     describe "new" $ do
         it "returns a new game" $ do
             fst (new r) `shouldBe`
-                [ [Just 2, Nothing, Nothing, Nothing]
+                [ [Nothing, Nothing, Nothing, Just 2]
+                , [Just 2, Nothing, Nothing, Nothing]
                 , [Nothing, Nothing, Nothing, Nothing]
                 , [Nothing, Nothing, Nothing, Nothing]
-                , [Nothing, Just 2, Nothing, Nothing]
                 ]
 
     describe "randomEmptyIndex" $ do
@@ -95,12 +95,12 @@ spec = do
         it "returns an empty point" $ do
             let g = mkStdGen 0
                 b = [[Nothing, Nothing], [Nothing, Nothing]]
-            fst (randomEmptyPoint b g) `shouldBe` Just (0, 1)
+            fst (randomEmptyPoint b g) `shouldBe` Just (1, 1)
 
         it "returns an empty point" $ do
             let g = mkStdGen 2
                 b = [[Nothing, Nothing], [Nothing, Nothing]]
-            fst (randomEmptyPoint b g) `shouldBe` Just (1, 1)
+            fst (randomEmptyPoint b g) `shouldBe` Just (0, 1)
 
     describe "randomTile" $ do
         it "returns a 2 tile" $ do

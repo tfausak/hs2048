@@ -15,4 +15,3 @@ import           Hs2048.Tile      as Hs2048 hiding (empty, parse, render,
                                              score)
 import           Hs2048.Vector    as Hs2048 hiding (canShift, empty, parse,
                                              render, score, set, shift)
--- HASKELETON: import New.Module as Hs2048

@@ -1,7 +1,7 @@
-# Changelog
+# Change log
 
-## Master
+hs2048 uses [Semantic Versioning][].
+The change log is available through the [releases on GitHub][].
 
-## v0.1.0
-
--   Initial release.
+[Semantic Versioning]: http://semver.org/spec/v2.0.0.html
+[releases on GitHub]: https://github.com/tfausak/hs2048/releases

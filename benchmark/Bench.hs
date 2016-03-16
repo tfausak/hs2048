@@ -12,7 +12,6 @@ import qualified Hs2048.SettingsBench
 import qualified Hs2048.TileBench
 import qualified Hs2048.VectorBench
 import qualified Hs2048Bench
--- HASKELETON: import qualified New.ModuleBench
 
 main :: IO ()
 main = defaultMain
@@ -27,5 +26,4 @@ main = defaultMain
     , bgroup "Hs2048.Settings" Hs2048.SettingsBench.benchmarks
     , bgroup "Hs2048.Tile" Hs2048.TileBench.benchmarks
     , bgroup "Hs2048.Vector" Hs2048.VectorBench.benchmarks
-    -- HASKELETON: , bgroup "New.Module" New.ModuleBench.benchmarks
     ]
